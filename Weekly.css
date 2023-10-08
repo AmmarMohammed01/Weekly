@@ -1,0 +1,138 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+}
+
+.day-box
+{
+  vertical-align: middle;
+  display: inline-block;
+  width: 195px;
+  height: 250px;
+  border-style: solid;
+  border-color: white;
+  border-radius: 10px;
+  transition: box-shadow 0.25s;
+}
+
+.day-box:hover
+{
+  box-shadow: 0px 0px 100px rgba(255, 255, 255, 1);
+}
+
+.hey
+{
+  font-weight: bold;
+  font-size: 50px;
+  text-align: center;
+  margin-top:30px;
+  margin-bottom:0px;
+}
+
+.author
+{
+  color:rgb(176, 165, 165);
+  text-align: center;
+  margin-top:10px;
+  margin-bottom: 20px;
+}
+
+.numWeek
+{
+  font-family: sans-serif;
+  color:rgb(176, 165, 165);
+  text-align: center;
+  margin-top:10px;
+  margin-bottom: 20px;
+}
+
+.dayOfWeek
+{
+font-size: 20px;
+text-align: center;
+margin-top: 10px;
+margin-bottom:10px;
+}
+
+.assignment
+{
+  color: rgb(0, 149, 255);
+  font-size: 18px;
+
+  margin-top: 0px;
+  margin-left:20px;
+  margin-bottom:5px;
+}
+
+.quiz
+{
+  color: orange;
+  font-size:18px;
+
+  margin-top: 0px;
+  margin-left:20px;
+  margin-bottom:5px;
+}
+
+.exam
+{
+  color: red;
+  font-size:18px;
+
+  margin-top: 0px;
+  margin-left:20px;
+  margin-bottom:5px;
+}
+
+.events
+{
+  color: plum;
+  font-size: 18;
+
+  margin-top: 0px;
+  margin-left:20px;
+  margin-bottom:5px;
+}
+
+button
+{
+  background-color: rgb(0, 120, 255);
+  border: none;
+  border-radius: 20px;
+
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+
+  padding-left:15px;
+  padding-right:15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  
+  margin-top: 10px;
+  /*
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  */
+  display:block;
+  margin: auto;
+
+  transition: background-color 0.5s;
+  transition: padding-left 0.5s;
+  transition: padding-right 0.5s;
+
+}
+
+button:hover
+{
+  background-color: rgb(0, 80, 255)
+}
+
+button:active
+{
+  padding-left:10px;
+  padding-right:10px;
+}
