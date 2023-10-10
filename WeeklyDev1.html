@@ -10,8 +10,8 @@
     margin-bottom:100px;
     ">
       <div style="background-color: lightblue;">
-        Monday
-        <div class="js-output"></div>
+        <button onclick="addTodo('monday')">Monday</button>
+        <div class="js-output1"></div>
       </div>
       <div style="background-color: lightpink;">Tuesday</div>
       <div style="background-color: lightblue;">Wednesday</div>
@@ -20,34 +20,40 @@
     </div>
 
     <input placeholder="Your task here..." class="js-input-name">
-    <button onclick="addTodo()"
-    >Add</button>
-
+    
     <script>
-      const todoList = [];
+      const monArr = [];
+      const tueArr = [];
+      const wedArr = [];
+      const thurArr = [];
+      const friArr = [];
 
-      function addTodo() {
+      function addTodo(day) {
         const inputElement = document.querySelector('.js-input-name');
         const name = inputElement.value;
 
-        todoList.push(name);
-        console.log(todoList);
-
-        inputElement.value = '';
-        renderTodoList();
+        if(day === 'monday') {
+          monArr.push(name);
+          inputElement.value = '';
+          renderTodoList(monArr);
+        }
       }
 
-      function renderTodoList() {
+      function renderTodoList(dayList) {
         let todoHTML = '';
 
-        for (let i = 0; i < todoList.length; i++) {
-          const todo = todoList[i];
+        for (let i = 0; i < dayList.length; i++) {
+          const todo = dayList[i];
           const html = `<p>${todo}</p>`;
           todoHTML += html;
         }
-        document.querySelector('.js-output').innerHTML = todoHTML;
-        console.log(todoHTML);
+
+        if(dayList === monArr) {
+          document.querySelector('.js-output1').innerHTML = todoHTML;
+          console.log(todoHTML);
+        }
       }
+
     </script>
   </body>
 </html>
