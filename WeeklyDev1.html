@@ -39,6 +39,7 @@
       const wedArr = [];
       const thurArr = [];
       const friArr = [];
+      let grandArr = [];
 
       function addTodo(day) {
         const inputElement = document.querySelector('.js-input-name');
@@ -100,6 +101,9 @@
           document.querySelector('.js-output5').innerHTML = todoHTML;
           console.log(todoHTML);
         }
+
+        grandArr = [monArr, tueArr, wedArr, thurArr, friArr];
+        console.log(grandArr);
       }
 
     </script>
