@@ -26,43 +26,87 @@ else {
 function addTodo(day) {
   const inputElement = document.querySelector('.js-input-name');
   const name = inputElement.value;
-  
-  if(name === '') {
-    console.log('Do not add empty item to list!');
-    return;
-  }
 
   if(day === 'sunday') { //specific
+    if(name === '') {
+      sunArr = []; //specific
+      localStorage.setItem('grandArr', JSON.stringify(grandArr));
+      inputElement.value = '';
+      renderTodoList(sunArr); //sp
+      return;
+    }
     sunArr.push(name); //sp
     inputElement.value = '';
     renderTodoList(sunArr); //sp
   } 
   else if(day === 'monday') { //specific
+    if(name === '') {
+      monArr = []; //specific
+      localStorage.setItem('grandArr', JSON.stringify(grandArr));
+      inputElement.value = '';
+      renderTodoList(monArr); //sp
+      return;
+    }
     monArr.push(name); //sp
     inputElement.value = '';
     renderTodoList(monArr); //sp
   } 
   else if (day === 'tuesday') {
+    if(name === '') {
+      tueArr = []; //specific
+      localStorage.setItem('grandArr', JSON.stringify(grandArr));
+      inputElement.value = '';
+      renderTodoList(tueArr); //sp
+      return;
+    }
     tueArr.push(name);
     inputElement.value = '';
     renderTodoList(tueArr);
   }
   else if (day === 'wednesday') {
+    if(name === '') {
+      wedArr = []; //specific
+      localStorage.setItem('grandArr', JSON.stringify(grandArr));
+      inputElement.value = '';
+      renderTodoList(wedArr); //sp
+      return;
+    }
     wedArr.push(name);
     inputElement.value = '';
     renderTodoList(wedArr);
   }
   else if (day === 'thursday') {
+    if(name === '') {
+      thurArr = []; //specific
+      localStorage.setItem('grandArr', JSON.stringify(grandArr));
+      inputElement.value = '';
+      renderTodoList(thurArr); //sp
+      return;
+    }
     thurArr.push(name);
     inputElement.value = '';
     renderTodoList(thurArr);
   }
   else if (day === 'friday') {
+    if(name === '') {
+      friArr = []; //specific
+      localStorage.setItem('grandArr', JSON.stringify(grandArr));
+      inputElement.value = '';
+      renderTodoList(friArr); //sp
+      return;
+    }
     friArr.push(name);
     inputElement.value = '';
     renderTodoList(friArr);
   }
   else if (day === 'saturday') {
+    if(name === '') {
+      satArr = []; //specific
+      localStorage.setItem('grandArr', JSON.stringify(grandArr));
+      inputElement.value = '';
+      renderTodoList(satArr); //sp
+      return;
+    }
     satArr.push(name);
     inputElement.value = '';
     renderTodoList(satArr);
