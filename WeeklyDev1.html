@@ -13,14 +13,17 @@
         <button onclick="addTodo('monday')">Monday</button>
         <div class="js-output1"></div>
       </div>
-      <div style="background-color: lightpink;">Tuesday</div>
+      <div style="background-color: lightpink;">
+        <button onclick="addTodo('tuesday')">Tuesday</button>
+        <div class="js-output2"></div>
+      </div>
       <div style="background-color: lightblue;">Wednesday</div>
       <div style="background-color: lightpink;">Thursday</div>
       <div style="background-color: lightblue;">Friday</div>
     </div>
 
     <input placeholder="Your task here..." class="js-input-name">
-    
+
     <script>
       const monArr = [];
       const tueArr = [];
@@ -36,6 +39,11 @@
           monArr.push(name);
           inputElement.value = '';
           renderTodoList(monArr);
+        } 
+        else if (day === 'tuesday') {
+          tueArr.push(name);
+          inputElement.value = '';
+          renderTodoList(tueArr);
         }
       }
 
@@ -50,6 +58,10 @@
 
         if(dayList === monArr) {
           document.querySelector('.js-output1').innerHTML = todoHTML;
+          console.log(todoHTML);
+        }
+        else if (dayList === tueArr) {
+          document.querySelector('.js-output2').innerHTML = todoHTML;
           console.log(todoHTML);
         }
       }
