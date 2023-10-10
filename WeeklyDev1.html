@@ -32,18 +32,36 @@
     </div>
 
     <input placeholder="Your task here..." class="js-input-name">
+    <button onclick="clearAll();">Clear All</button>
 
     <script>
-      const monArr = [];
-      const tueArr = [];
-      const wedArr = [];
-      const thurArr = [];
-      const friArr = [];
-      let grandArr = [];
+      let grandArr = JSON.parse(localStorage.getItem('grandArr'));
+      let monArr = grandArr[0];
+      let tueArr = grandArr[1];
+      let wedArr = grandArr[2];
+      let thurArr = grandArr[3];
+      let friArr = grandArr[4];
+
+      if(!grandArr) {
+        grandArr = [];
+        monArr = [];
+        tueArr = [];
+        wedArr = [];
+        thurArr = [];
+        friArr = [];
+      }
+      else {
+        renderAll();
+      }
 
       function addTodo(day) {
         const inputElement = document.querySelector('.js-input-name');
         const name = inputElement.value;
+        
+        if(name === '') {
+          console.log('Do not add empty item to list!');
+          return;
+        }
 
         if(day === 'monday') { //specific
           monArr.push(name); //sp
@@ -104,6 +122,28 @@
 
         grandArr = [monArr, tueArr, wedArr, thurArr, friArr];
         console.log(grandArr);
+        //console.log(JSON.stringify(grandArr));
+        localStorage.setItem('grandArr', JSON.stringify(grandArr));
+      }
+
+      function renderAll() {
+        console.log('running renderAll()');
+        renderTodoList(monArr);
+        renderTodoList(tueArr);
+        renderTodoList(wedArr);
+        renderTodoList(thurArr);
+        renderTodoList(friArr);
+      }
+
+      function clearAll() {
+        grandArr = [];
+        monArr = [];
+        tueArr = [];
+        wedArr = [];
+        thurArr = [];
+        friArr = [];
+        localStorage.setItem('grandArr', JSON.stringify(grandArr));
+        renderAll();
       }
 
     </script>
