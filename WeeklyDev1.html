@@ -17,9 +17,18 @@
         <button onclick="addTodo('tuesday')">Tuesday</button>
         <div class="js-output2"></div>
       </div>
-      <div style="background-color: lightblue;">Wednesday</div>
-      <div style="background-color: lightpink;">Thursday</div>
-      <div style="background-color: lightblue;">Friday</div>
+      <div style="background-color: lightblue;">
+        <button onclick="addTodo('wednesday')">Wednesday</button>
+        <div class="js-output3"></div>
+      </div>
+      <div style="background-color: lightpink;">
+        <button onclick="addTodo('thursday')">Thursday</button>
+        <div class="js-output4"></div>
+      </div>
+      <div style="background-color: lightblue;">
+        <button onclick="addTodo('friday')">Friday</button>
+        <div class="js-output5"></div>
+      </div>
     </div>
 
     <input placeholder="Your task here..." class="js-input-name">
@@ -35,15 +44,30 @@
         const inputElement = document.querySelector('.js-input-name');
         const name = inputElement.value;
 
-        if(day === 'monday') {
-          monArr.push(name);
+        if(day === 'monday') { //specific
+          monArr.push(name); //sp
           inputElement.value = '';
-          renderTodoList(monArr);
+          renderTodoList(monArr); //sp
         } 
         else if (day === 'tuesday') {
           tueArr.push(name);
           inputElement.value = '';
           renderTodoList(tueArr);
+        }
+        else if (day === 'wednesday') {
+          wedArr.push(name);
+          inputElement.value = '';
+          renderTodoList(wedArr);
+        }
+        else if (day === 'thursday') {
+          thurArr.push(name);
+          inputElement.value = '';
+          renderTodoList(thurArr);
+        }
+        else if (day === 'friday') {
+          friArr.push(name);
+          inputElement.value = '';
+          renderTodoList(friArr);
         }
       }
 
@@ -56,12 +80,24 @@
           todoHTML += html;
         }
 
-        if(dayList === monArr) {
-          document.querySelector('.js-output1').innerHTML = todoHTML;
+        if(dayList === monArr) { //sp
+          document.querySelector('.js-output1').innerHTML = todoHTML; //sp
           console.log(todoHTML);
         }
         else if (dayList === tueArr) {
           document.querySelector('.js-output2').innerHTML = todoHTML;
+          console.log(todoHTML);
+        }
+        else if (dayList === wedArr) {
+          document.querySelector('.js-output3').innerHTML = todoHTML;
+          console.log(todoHTML);
+        }
+        else if (dayList === thurArr) {
+          document.querySelector('.js-output4').innerHTML = todoHTML;
+          console.log(todoHTML);
+        }
+        else if (dayList === friArr) {
+          document.querySelector('.js-output5').innerHTML = todoHTML;
           console.log(todoHTML);
         }
       }
