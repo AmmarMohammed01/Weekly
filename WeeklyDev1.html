@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test Version</title>
+  </head>
+  <body>
+    <div style="display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+    margin-bottom:100px;
+    ">
+      <div style="background-color: lightblue;">
+        Monday
+        <div class="js-output"></div>
+      </div>
+      <div style="background-color: lightpink;">Tuesday</div>
+      <div style="background-color: lightblue;">Wednesday</div>
+      <div style="background-color: lightpink;">Thursday</div>
+      <div style="background-color: lightblue;">Friday</div>
+    </div>
+
+    <input placeholder="Your task here..." class="js-input-name">
+    <button onclick="addTodo()"
+    >Add</button>
+
+    <script>
+      const todoList = [];
+
+      function addTodo() {
+        const inputElement = document.querySelector('.js-input-name');
+        const name = inputElement.value;
+
+        todoList.push(name);
+        console.log(todoList);
+
+        inputElement.value = '';
+        renderTodoList();
+      }
+
+      function renderTodoList() {
+        let todoHTML = '';
+
+        for (let i = 0; i < todoList.length; i++) {
+          const todo = todoList[i];
+          const html = `<p>${todo}</p>`;
+          todoHTML += html;
+        }
+        document.querySelector('.js-output').innerHTML = todoHTML;
+        console.log(todoHTML);
+      }
+    </script>
+  </body>
+</html>
