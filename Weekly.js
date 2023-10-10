@@ -1,3 +1,5 @@
+let webView = false;
+
 let grandArr = JSON.parse(localStorage.getItem('grandArr'));
 let sunArr = [];
 let monArr = [];
@@ -133,4 +135,38 @@ function clearAll() {
   satArr = [];
   localStorage.setItem('grandArr', JSON.stringify(grandArr));
   renderAll();
+}
+
+function webpageView() {
+  const switchDayBox = document.querySelectorAll(".day-container");
+
+  //if currently not dark mode
+  if(webView === false) {
+    webView = true;
+    document.querySelector('body').style.background = 'black';
+    document.querySelector('.title').style.color = 'white';
+    document.querySelector('.info').style.color = 'white';
+    
+    for(let i = 0; i < switchDayBox.length; i++) {
+      switchDayBox[i].style["border-color"] = 'white';
+    }
+
+    document.querySelector('.button-view').style['background-color'] = 'white';
+    document.querySelector('.button-view').style.color = 'black';
+    document.querySelector('.button-view').innerHTML = 'Light Mode';
+  }
+  else {
+    webView = false;
+    document.querySelector('body').style.background = 'white';
+    document.querySelector('.title').style.color = 'black';
+    document.querySelector('.info').style.color = 'black';
+    
+    for(let i = 0; i < switchDayBox.length; i++) {
+      switchDayBox[i].style["border-color"] = 'black';
+    }
+
+    document.querySelector('.button-view').style['background-color'] = 'black';
+    document.querySelector('.button-view').style.color = 'white';
+    document.querySelector('.button-view').innerHTML = 'Dark Mode';
+  }
 }

@@ -3,11 +3,14 @@ body {
 }
 
 .title {
+  display: inline;
+  vertical-align: center;
+
   font-weight: bold;
   font-size: 50px;
   text-align: center;
-  margin-top:30px;
-  margin-bottom: 0px;
+  margin-top:10px;
+  margin-bottom: 10px;
 }
 
 .info {
@@ -22,7 +25,30 @@ body {
   margin-bottom:50px;
 }
 
-button {
+.day-container {
+  border-color: black;
+  border-width: 3px;
+  border-radius: 10px;
+  border-style: solid; /*this makes the border appear around div*/
+
+  padding: 5px 5px;
+}
+
+.button-view {
+  display: inline;
+  background-color: black;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-weight: bold;
+
+  padding: 10px 15px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.button-day,
+.button-clear-tasks {
   background-color: white;
   border: none;
   /*border-radius: 25px;*/
@@ -32,9 +58,18 @@ button {
   cursor: pointer;
 }
 
+.button-day {
+  border-radius: 10px;
+  transition: background-color 0.25s;
+}
+
+.button-day:hover {
+  background-color: rgb(230,230,230);
+}
+
 .button-clear-tasks {
   display: block;
-  background-color: darkred;
+  background-color: rgb(200,0,0);
   color: white;
   font-weight: bold;
   border-radius: 20px;
@@ -42,6 +77,10 @@ button {
   padding: 10px 15px;
 
   margin-top: 10px;
+}
+
+.button-clear-tasks:hover {
+  background-color: rgb(139,0,0);
 }
 
 input {

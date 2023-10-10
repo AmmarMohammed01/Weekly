@@ -10,7 +10,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="title">Weekly</div>
+    <div style="display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    ">
+      <div></div>
+      <div class="title">Weekly</div>
+      <div style="display: grid;
+      grid-template-columns: 1fr;
+      place-items: center right;
+      ">
+        <button onclick="webpageView();"
+        class="js-button-view button-view">Dark Mode</button>
+      </div>
+    </div>
+    
     <div class="info">
       <p>By Ammar Mohammed</p>
       <p>Week 8: 10/8-14/2023</p>
@@ -18,32 +31,32 @@
 
 
     <div class="week-container">
-      <div style="background-color: lightpink;">
-        <button onclick="addTodo('sunday')">Sunday</button>
+      <div class="day-container" style="background-color: lightpink;">
+        <button class="button-day" onclick="addTodo('sunday')">Sunday</button>
         <div class="js-output1"></div>
       </div>
-      <div style="background-color: lightblue;">
-        <button onclick="addTodo('monday')">Monday</button>
+      <div class="day-container" style="background-color: lightblue;">
+        <button class="button-day" onclick="addTodo('monday')">Monday</button>
         <div class="js-output2"></div>
       </div>
-      <div style="background-color: lightpink;">
-        <button onclick="addTodo('tuesday')">Tuesday</button>
+      <div class="day-container" style="background-color: lightpink;">
+        <button class="button-day" onclick="addTodo('tuesday')">Tuesday</button>
         <div class="js-output3"></div>
       </div>
-      <div style="background-color: lightblue;">
-        <button onclick="addTodo('wednesday')">Wednesday</button>
+      <div class="day-container" style="background-color: lightblue;">
+        <button class="button-day" onclick="addTodo('wednesday')">Wednesday</button>
         <div class="js-output4"></div>
       </div>
-      <div style="background-color: lightpink;">
-        <button onclick="addTodo('thursday')">Thursday</button>
+      <div class="day-container" style="background-color: lightpink;">
+        <button class="button-day" onclick="addTodo('thursday')">Thursday</button>
         <div class="js-output5"></div>
       </div>
-      <div style="background-color: lightblue;">
-        <button onclick="addTodo('friday')">Friday</button>
+      <div class="day-container" style="background-color: lightblue;">
+        <button class="button-day" onclick="addTodo('friday')">Friday</button>
         <div class="js-output6"></div>
       </div>
-      <div style="background-color: lightpink;">
-        <button onclick="addTodo('saturday')">Saturday</button>
+      <div class="day-container" style="background-color: lightpink;">
+        <button class="button-day" onclick="addTodo('saturday')">Saturday</button>
         <div class="js-output7"></div>
       </div>
     </div>
