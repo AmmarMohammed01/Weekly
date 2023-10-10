@@ -2,61 +2,38 @@
 <html>
   <head>
     <title>Weekly</title>
-    <link rel="stylesheet" href="Weekly.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <p class="hey">Weekly</p>
-    <p class="author">By Ammar Mohammed</p>
-    <p class="numWeek">Week 8: 10/8-14/2023</p>
-    <div class="day-box">
-      <p class="dayOfWeek">Sunday</p>
-      
+    <div style="display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+    margin-bottom:100px;
+    ">
+      <div style="background-color: lightblue;">
+        <button onclick="addTodo('monday')">Monday</button>
+        <div class="js-output1"></div>
+      </div>
+      <div style="background-color: lightpink;">
+        <button onclick="addTodo('tuesday')">Tuesday</button>
+        <div class="js-output2"></div>
+      </div>
+      <div style="background-color: lightblue;">
+        <button onclick="addTodo('wednesday')">Wednesday</button>
+        <div class="js-output3"></div>
+      </div>
+      <div style="background-color: lightpink;">
+        <button onclick="addTodo('thursday')">Thursday</button>
+        <div class="js-output4"></div>
+      </div>
+      <div style="background-color: lightblue;">
+        <button onclick="addTodo('friday')">Friday</button>
+        <div class="js-output5"></div>
+      </div>
     </div>
-    
-    <div class="day-box">
-      <p class="dayOfWeek">Monday</p>
-      <p class="assignment">ENGR3341 HW4 &#10003;</p>
-      <p class="events">Group: Meet w/ FabFive</p>
-      
-    </div>
-    
-    <div class="day-box">
-      <p class="dayOfWeek">Tuesday</p>
-      <p class="events">EPCS2200: PCB Workshop</p>
-      
-    </div>
-    
 
-    <div class="day-box">
-      <p class="dayOfWeek">Wednesday</p>
-      <p class="assignment">CE2310 Reading & HW6</p>
-    </div>
-    
+    <input placeholder="Your task here..." class="js-input-name">
+    <button onclick="clearAll();">Clear All</button>
 
-    <div class="day-box">
-      <p class="dayOfWeek">Thursday</p>
-      <p class="assignment">CE2310: Prelab 6b</p>
-
-    </div>
-    
-
-    <div class="day-box">
-      <p class="dayOfWeek">Friday</p>
-      <p class="assignment">CE2310: Lab 6b</p>
-      <p class="quiz">MATH2420: Quiz 7</p>
-    </div>
-    
-    
-
-    <div class="day-box">
-      <p class="dayOfWeek">Saturday</p>
-      
-
-    </div>
-    
+    <script src="Weekly.js"></script>
   </body>
 </html>
