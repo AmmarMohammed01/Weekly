@@ -1,23 +1,23 @@
 let grandArr = JSON.parse(localStorage.getItem('grandArr'));
-let sunArr = grandArr[0];
-let monArr = grandArr[1];
-let tueArr = grandArr[2];
-let wedArr = grandArr[3];
-let thurArr = grandArr[4];
-let friArr = grandArr[5];
-let satArr = grandArr[6];
+let sunArr = [];
+let monArr = [];
+let tueArr = [];
+let wedArr = [];
+let thurArr = [];
+let friArr = [];
+let satArr = [];
 
 if(!grandArr) {
   grandArr = [];
-  sunArr = [];
-  monArr = [];
-  tueArr = [];
-  wedArr = [];
-  thurArr = [];
-  friArr = [];
-  satArr = [];
 }
 else {
+  sunArr = grandArr[0];
+  monArr = grandArr[1];
+  tueArr = grandArr[2];
+  wedArr = grandArr[3];
+  thurArr = grandArr[4];
+  friArr = grandArr[5];
+  satArr = grandArr[6];
   renderAll();
 }
 
