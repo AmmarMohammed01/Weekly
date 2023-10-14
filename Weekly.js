@@ -23,11 +23,13 @@ else {
   renderAll();
 }
 
+//lets you add task to memory and calls render function to update page
 function addTodo(day) {
   const inputElement = document.querySelector('.js-input-name');
   const name = inputElement.value;
 
   if(day === 'sunday') { //specific
+    //this branch is only if input box is empty, it will clear box
     if(name === '') {
       sunArr = []; //specific
       localStorage.setItem('grandArr', JSON.stringify(grandArr));
@@ -35,7 +37,8 @@ function addTodo(day) {
       renderTodoList(sunArr); //sp
       return;
     }
-    sunArr.push(name); //sp
+
+    sunArr.push({name, complete: false}); //sp
     inputElement.value = '';
     renderTodoList(sunArr); //sp
   } 
@@ -113,12 +116,19 @@ function addTodo(day) {
   }
 }
 
+//whenever a change is made in any array, update the box on the page
 function renderTodoList(dayList) {
   let todoHTML = '';
 
   for (let i = 0; i < dayList.length; i++) {
     const todo = dayList[i];
-    const html = `<p>${todo}</p>`;
+    let html = '';
+    if(todo.complete === true) {
+      html = `<div><input type='checkbox' checked>${todo.name}</div>`;
+    }
+    else {
+      html = `<div><input type='checkbox' id='${todo.name}' onclick='completeTask(${todo.name});'>${todo.name}</div>`;
+    }
     todoHTML += html;
   }
 
@@ -157,6 +167,7 @@ function renderTodoList(dayList) {
   localStorage.setItem('grandArr', JSON.stringify(grandArr));
 }
 
+//renders items of each day to the page
 function renderAll() {
   console.log('running renderAll()');
   renderTodoList(sunArr);
@@ -168,6 +179,7 @@ function renderAll() {
   renderTodoList(satArr);
 }
 
+//if clear all button is pressed all the tasks will be erased from page
 function clearAll() {
   grandArr = [];
   sunArr = [];
@@ -181,6 +193,7 @@ function clearAll() {
   renderAll();
 }
 
+//This controls whether the user see website in light or dark mode
 function webpageView() {
   const switchDayBox = document.querySelectorAll(".day-container");
 
@@ -191,10 +204,13 @@ function webpageView() {
     document.querySelector('.title').style.color = 'white';
     document.querySelector('.info').style.color = 'white';
     
+    //change each boxes border to white
+    //use for loop b/c cannot be performed in one step
     for(let i = 0; i < switchDayBox.length; i++) {
       switchDayBox[i].style["border-color"] = 'white';
     }
 
+    //change button dark/light mode button color
     document.querySelector('.button-view').style['background-color'] = 'white';
     document.querySelector('.button-view').style.color = 'black';
     document.querySelector('.button-view').innerHTML = 'Light Mode';
@@ -213,4 +229,11 @@ function webpageView() {
     document.querySelector('.button-view').style.color = 'white';
     document.querySelector('.button-view').innerHTML = 'Dark Mode';
   }
+}
+
+//Ability to mark tasks complete
+function completeTask(elementID) {
+  //console.log(elementID); //elementID is the input box itself
+  setTimeout(() => { elementID.checked = false; }, 2000);
+
 }
