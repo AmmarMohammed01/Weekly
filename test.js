@@ -1,26 +1,26 @@
 let webView = false;
 
 let grandArr = JSON.parse(localStorage.getItem('grandArr'));
-let sunArr = [];
-let monArr = [];
-let tueArr = [];
-let wedArr = [];
-let thurArr = [];
-let friArr = [];
-let satArr = [];
+// let sunArr = [];
+// let monArr = [];
+// let tueArr = [];
+// let wedArr = [];
+// let thurArr = [];
+// let friArr = [];
+// let satArr = [];
 
 if(!grandArr) {
   grandArr = [];
 }
 else {
-  sunArr = grandArr[0];
-  monArr = grandArr[1];
-  tueArr = grandArr[2];
-  wedArr = grandArr[3];
-  thurArr = grandArr[4];
-  friArr = grandArr[5];
-  satArr = grandArr[6];
-  renderAll();
+  // sunArr = grandArr[0];
+  // monArr = grandArr[1];
+  // tueArr = grandArr[2];
+  // wedArr = grandArr[3];
+  // thurArr = grandArr[4];
+  // friArr = grandArr[5];
+  // satArr = grandArr[6];
+  renderAll(); // CHANGE THIS
 }
 
 //lets you add task to memory and calls render function to update page
@@ -161,7 +161,7 @@ function renderTodoList(dayList) {
     console.log(todoHTML);
   }
 
-  grandArr = [sunArr, monArr, tueArr, wedArr, thurArr, friArr, satArr];
+  //grandArr = [sunArr, monArr, tueArr, wedArr, thurArr, friArr, satArr];
   console.log(grandArr);
   //console.log(JSON.stringify(grandArr));
   localStorage.setItem('grandArr', JSON.stringify(grandArr));
@@ -170,25 +170,25 @@ function renderTodoList(dayList) {
 //renders items of each day to the page
 function renderAll() {
   console.log('running renderAll()');
-  renderTodoList(sunArr);
-  renderTodoList(monArr);
-  renderTodoList(tueArr);
-  renderTodoList(wedArr);
-  renderTodoList(thurArr);
-  renderTodoList(friArr);
-  renderTodoList(satArr);
+  // renderTodoList(sunArr);
+  // renderTodoList(monArr);
+  // renderTodoList(tueArr);
+  // renderTodoList(wedArr);
+  // renderTodoList(thurArr);
+  // renderTodoList(friArr);
+  // renderTodoList(satArr);
 }
 
 //if clear all button is pressed all the tasks will be erased from page
 function clearAll() {
   grandArr = [];
-  sunArr = [];
-  monArr = [];
-  tueArr = [];
-  wedArr = [];
-  thurArr = [];
-  friArr = [];
-  satArr = [];
+  // sunArr = [];
+  // monArr = [];
+  // tueArr = [];
+  // wedArr = [];
+  // thurArr = [];
+  // friArr = [];
+  // satArr = [];
   localStorage.setItem('grandArr', JSON.stringify(grandArr));
   renderAll();
 }
@@ -239,3 +239,5 @@ function completeTask(elementID) {
 }
 
 //reconstruct the code so that we only have the grand array, and each task has a property of name, day, and completed status
+
+//remove mention of individual day arrays, just have grand array. To clear day array, remove each element that has the specific day, like todo.day === "Monday"
