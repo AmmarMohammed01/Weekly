@@ -1,241 +1,102 @@
-let webView = false;
+const dayBoxes = ['.js-output1', '.js-output2', '.js-output3', '.js-output4', '.js-output5', '.js-output6', '.js-output7'];
+let tasksArray = JSON.parse(localStorage.getItem('tasksArray')); //stores every task entered by user
 
-let grandArr = JSON.parse(localStorage.getItem('grandArr'));
-let sunArr = [];
-let monArr = [];
-let tueArr = [];
-let wedArr = [];
-let thurArr = [];
-let friArr = [];
-let satArr = [];
+//if task array is not in local storage, create empty array
+if(!tasksArray) {
+  tasksArray = [];
+}
 
-if(!grandArr) {
-  grandArr = [];
-}
-else {
-  sunArr = grandArr[0];
-  monArr = grandArr[1];
-  tueArr = grandArr[2];
-  wedArr = grandArr[3];
-  thurArr = grandArr[4];
-  friArr = grandArr[5];
-  satArr = grandArr[6];
-  renderAll();
-}
+console.log('Loading TaskArray: ' + JSON.stringify(tasksArray));
+
+renderAll();
 
 //lets you add task to memory and calls render function to update page
-function addTodo(day) {
+function addTodo(daySelect) {
+  //get input box and its value
   const inputElement = document.querySelector('.js-input-name');
   const name = inputElement.value;
 
-  if(day === 'sunday') { //specific
-    //this branch is only if input box is empty, it will clear box
-    if(name === '') {
-      sunArr = []; //specific
-      localStorage.setItem('grandArr', JSON.stringify(grandArr));
-      inputElement.value = '';
-      renderTodoList(sunArr); //sp
-      return;
+  //if nothing in input box and day button pressed: clear the day
+  if(name === '') {
+    document.querySelector(dayBoxes[daySelect]).innerHTML = '';
+
+    //store indecies of tasks with certain day value here
+    let tasksToRemove = [];
+    for(let i = 0; i < tasksArray.length; i++) {
+      if(tasksArray[i].day === daySelect) {
+        tasksToRemove.push(i);
+      }
+      console.log(tasksToRemove);
     }
 
-    sunArr.push({name, complete: false}); //sp
-    inputElement.value = '';
-    renderTodoList(sunArr); //sp
-  } 
-  else if(day === 'monday') { //specific
-    if(name === '') {
-      monArr = []; //specific
-      localStorage.setItem('grandArr', JSON.stringify(grandArr));
-      inputElement.value = '';
-      renderTodoList(monArr); //sp
-      return;
+    //remove tasks at the indicies
+    if(tasksToRemove.length !== 0) {
+      for(let i = 0; i < tasksToRemove.length; i++){
+        console.log(`At index ${i}: ${JSON.stringify(tasksArray[tasksToRemove[i] - i])}`);
+        tasksArray.splice(tasksToRemove[i] - i,1); //tasktorem array value minus loop index because taskArray changing in size
+      }
+      localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+      console.log('Tasks removed!');
     }
-    monArr.push(name); //sp
-    inputElement.value = '';
-    renderTodoList(monArr); //sp
-  } 
-  else if (day === 'tuesday') {
-    if(name === '') {
-      tueArr = []; //specific
-      localStorage.setItem('grandArr', JSON.stringify(grandArr));
-      inputElement.value = '';
-      renderTodoList(tueArr); //sp
-      return;
+    else {
+      console.log('No tasks removed');
     }
-    tueArr.push(name);
-    inputElement.value = '';
-    renderTodoList(tueArr);
+    renderAll();
   }
-  else if (day === 'wednesday') {
-    if(name === '') {
-      wedArr = []; //specific
-      localStorage.setItem('grandArr', JSON.stringify(grandArr));
-      inputElement.value = '';
-      renderTodoList(wedArr); //sp
-      return;
-    }
-    wedArr.push(name);
+  //or else add a new task
+  else {
+    const newTask = {name, day: daySelect, isCompleted: false};
+
+    tasksArray.push(newTask); //add task to array
+    localStorage.setItem('tasksArray', JSON.stringify(tasksArray)); //save array to storage
+
     inputElement.value = '';
-    renderTodoList(wedArr);
+    //console.log(tasksArray);
+
+    renderTask(newTask);
   }
-  else if (day === 'thursday') {
-    if(name === '') {
-      thurArr = []; //specific
-      localStorage.setItem('grandArr', JSON.stringify(grandArr));
-      inputElement.value = '';
-      renderTodoList(thurArr); //sp
-      return;
-    }
-    thurArr.push(name);
-    inputElement.value = '';
-    renderTodoList(thurArr);
-  }
-  else if (day === 'friday') {
-    if(name === '') {
-      friArr = []; //specific
-      localStorage.setItem('grandArr', JSON.stringify(grandArr));
-      inputElement.value = '';
-      renderTodoList(friArr); //sp
-      return;
-    }
-    friArr.push(name);
-    inputElement.value = '';
-    renderTodoList(friArr);
-  }
-  else if (day === 'saturday') {
-    if(name === '') {
-      satArr = []; //specific
-      localStorage.setItem('grandArr', JSON.stringify(grandArr));
-      inputElement.value = '';
-      renderTodoList(satArr); //sp
-      return;
-    }
-    satArr.push(name);
-    inputElement.value = '';
-    renderTodoList(satArr);
-  }
+  //printArray(tasksArray);
 }
 
 //whenever a change is made in any array, update the box on the page
-function renderTodoList(dayList) {
-  let todoHTML = '';
-
-  for (let i = 0; i < dayList.length; i++) {
-    const todo = dayList[i];
-    let html = '';
-    if(todo.complete === true) {
-      html = `<div><input type='checkbox' checked>${todo.name}</div>`;
-    }
-    else {
-      html = `<div><input type='checkbox' id='${todo.name}' onclick='completeTask(${todo.name});'>${todo.name}</div>`;
-    }
-    todoHTML += html;
-  }
-
-  if(dayList === sunArr) { //sp
-    document.querySelector('.js-output1').innerHTML = todoHTML; //sp
-    console.log(todoHTML);
-  }
-  else if(dayList === monArr) { //sp
-    document.querySelector('.js-output2').innerHTML = todoHTML; //sp
-    console.log(todoHTML);
-  }
-  else if (dayList === tueArr) {
-    document.querySelector('.js-output3').innerHTML = todoHTML;
-    console.log(todoHTML);
-  }
-  else if (dayList === wedArr) {
-    document.querySelector('.js-output4').innerHTML = todoHTML;
-    console.log(todoHTML);
-  }
-  else if (dayList === thurArr) {
-    document.querySelector('.js-output5').innerHTML = todoHTML;
-    console.log(todoHTML);
-  }
-  else if (dayList === friArr) {
-    document.querySelector('.js-output6').innerHTML = todoHTML;
-    console.log(todoHTML);
-  }
-  else if (dayList === satArr) {
-    document.querySelector('.js-output7').innerHTML = todoHTML;
-    console.log(todoHTML);
-  }
-
-  grandArr = [sunArr, monArr, tueArr, wedArr, thurArr, friArr, satArr];
-  console.log(grandArr);
-  //console.log(JSON.stringify(grandArr));
-  localStorage.setItem('grandArr', JSON.stringify(grandArr));
-}
-
-//renders items of each day to the page
-function renderAll() {
-  console.log('running renderAll()');
-  renderTodoList(sunArr);
-  renderTodoList(monArr);
-  renderTodoList(tueArr);
-  renderTodoList(wedArr);
-  renderTodoList(thurArr);
-  renderTodoList(friArr);
-  renderTodoList(satArr);
+function renderTask(newTask) {
+  const daySelect = newTask.day;
+  document.querySelector(dayBoxes[daySelect]).innerHTML += `<div>${newTask.name}</div>`;
+  console.log('New task added.');
 }
 
 //if clear all button is pressed all the tasks will be erased from page
 function clearAll() {
-  grandArr = [];
-  sunArr = [];
-  monArr = [];
-  tueArr = [];
-  wedArr = [];
-  thurArr = [];
-  friArr = [];
-  satArr = [];
-  localStorage.setItem('grandArr', JSON.stringify(grandArr));
-  renderAll();
+  tasksArray = []; //empty array
+  localStorage.setItem('tasksArray', JSON.stringify(tasksArray)); //save to local storage
+  //console.log(tasksArray);
+
+  for(let i = 0; i < dayBoxes.length; i++) {
+    document.querySelector(dayBoxes[i]).innerHTML = ''; //update html to blank
+  }
+  console.log('All tasks cleared.');
 }
 
-//This controls whether the user see website in light or dark mode
-function webpageView() {
-  const switchDayBox = document.querySelectorAll(".day-container");
-
-  //if currently not dark mode
-  if(webView === false) {
-    webView = true;
-    document.querySelector('body').style.background = 'black';
-    document.querySelector('.title').style.color = 'white';
-    document.querySelector('.info').style.color = 'white';
-    
-    //change each boxes border to white
-    //use for loop b/c cannot be performed in one step
-    for(let i = 0; i < switchDayBox.length; i++) {
-      switchDayBox[i].style["border-color"] = 'white';
+function renderAll() {
+  if(tasksArray.length !== 0) {
+    for(let i = 0; i < dayBoxes.length; i++) {
+      document.querySelector(dayBoxes[i]).innerHTML = '';
     }
 
-    //change button dark/light mode button color
-    document.querySelector('.button-view').style['background-color'] = 'white';
-    document.querySelector('.button-view').style.color = 'black';
-    document.querySelector('.button-view').innerHTML = 'Light Mode';
+    for(let i = 0; i < tasksArray.length; i++) {
+      const taskName = tasksArray[i].name;
+      const daySelect = tasksArray[i].day;
+      document.querySelector(dayBoxes[daySelect]).innerHTML += `<div>${taskName}</div>`;
+    }
+    console.log('Existing tasks loaded.');
   }
   else {
-    webView = false;
-    document.querySelector('body').style.background = 'white';
-    document.querySelector('.title').style.color = 'black';
-    document.querySelector('.info').style.color = 'black';
-    
-    for(let i = 0; i < switchDayBox.length; i++) {
-      switchDayBox[i].style["border-color"] = 'black';
-    }
-
-    document.querySelector('.button-view').style['background-color'] = 'black';
-    document.querySelector('.button-view').style.color = 'white';
-    document.querySelector('.button-view').innerHTML = 'Dark Mode';
+    console.log('No existing tasks found to load. Add tasks to get started.');
   }
 }
 
-//Ability to mark tasks complete
-function completeTask(elementID) {
-  //console.log(elementID); //elementID is the input box itself
-  setTimeout(() => { elementID.checked = false; }, 2000);
-
+function printArray(taskList) {
+  for(let i = 0; i < taskList.length; i++) {
+    console.log(`${i}: ${taskList[i].name}, Day: ${taskList[i].day}`);
+  }
 }
-
-//reconstruct the code so that we only have the grand array, and each task has a property of name, day, and completed status
