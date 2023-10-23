@@ -68,6 +68,9 @@ body {
 }
 
 .button-day {
+  background-color: black;
+  color: white;
+
   border-radius: 10px;
   transition: background-color 0.25s;
 }
