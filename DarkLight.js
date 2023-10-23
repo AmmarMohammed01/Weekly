@@ -9,11 +9,13 @@ function webpageView() {
     document.querySelector('body').style.background = 'black';
     document.querySelector('.title').style.color = 'white';
     document.querySelector('.info').style.color = 'white';
+    document.querySelector('.week-info').style.color = 'white';
     
     //change each boxes border to white
     //use for loop b/c cannot be performed in one step
     for(let i = 0; i < switchDayBox.length; i++) {
-      switchDayBox[i].style["border-color"] = 'white';
+      //switchDayBox[i].style["border-color"] = 'white';
+      switchDayBox[i].style.color = 'white';
     }
 
     //change button dark/light mode button color
@@ -26,9 +28,11 @@ function webpageView() {
     document.querySelector('body').style.background = 'white';
     document.querySelector('.title').style.color = 'black';
     document.querySelector('.info').style.color = 'black';
+    document.querySelector('.week-info').style.color = 'black';
     
     for(let i = 0; i < switchDayBox.length; i++) {
-      switchDayBox[i].style["border-color"] = 'black';
+      //switchDayBox[i].style["border-color"] = 'black';
+      switchDayBox[i].style.color = 'black';
     }
 
     document.querySelector('.button-view').style['background-color'] = 'black';

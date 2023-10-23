@@ -100,3 +100,26 @@ function printArray(taskList) {
     console.log(`${i}: ${taskList[i].name}, Day: ${taskList[i].day}`);
   }
 }
+
+let editButtonCounter = 0;
+
+function changeInfo() {
+  console.log(`Start: ${editButtonCounter}`);
+  editButtonCounter += 1;
+  textElement = document.querySelector('.js-change-info');
+  textElement.innerHTML = "<input style=\"margin-bottom: 0px;\"class=\"js-change-text\" placeholder=\"type info here\">";
+  
+  if(editButtonCounter === 2) {
+    console.log('In if block');
+    inputElement = document.querySelector('.js-change-text');
+    //console.log(`Input Box: ${inputElement}`);
+    console.log(inputElement);
+    let newInfo = inputElement.value;
+    console.log(`Input Text: ${newInfo}`);
+    console.log(`TextElement Text: ${textElement.value}`);
+
+    textElement.innerHTML = `<div><p>${newInfo}</p></div>`;
+    editButtonCounter = 0;
+  }
+  console.log(`End: ${editButtonCounter}`);
+}

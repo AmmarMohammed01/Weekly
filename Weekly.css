@@ -13,8 +13,16 @@ body {
   margin-bottom: 10px;
 }
 
-.info {
+.info,
+.week-info {
   text-align: center;
+}
+
+.week-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  margin-bottom: 10px;
 }
 
 .week-container {
@@ -26,7 +34,7 @@ body {
 }
 
 .day-container {
-  border-color: black;
+  border-color: rgb(0,180,255);
   border-width: 3px;
   border-radius: 10px;
   border-style: solid; /*this makes the border appear around div*/
@@ -48,7 +56,8 @@ body {
 }
 
 .button-day,
-.button-clear-tasks {
+.button-clear-tasks,
+.button-change-info {
   background-color: white;
   border: none;
   /*border-radius: 25px;*/
@@ -81,6 +90,11 @@ body {
 
 .button-clear-tasks:hover {
   background-color: rgb(139,0,0);
+}
+
+.button-change-info {
+  border: solid;
+  border-color: black;
 }
 
 input {
