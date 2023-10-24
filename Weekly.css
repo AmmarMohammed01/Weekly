@@ -13,15 +13,14 @@ body {
   margin-bottom: 10px;
 }
 
-.info,
-.week-info {
+.info, .week-info {
   text-align: center;
 }
 
 .week-info {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  place-items: center;
+  padding: 5px 5px;
+  grid-template-columns: 1fr 1fr 1fr;
   margin-bottom: 10px;
 }
 
