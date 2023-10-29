@@ -78,6 +78,13 @@ function clearAll() {
 }
 
 function renderAll() {
+  weekInfoText = document.querySelector('.js-change-info');
+  weekInfoText.innerHTML = localStorage.getItem('weekInfo');
+
+  if(!weekInfoText.innerHTML) {
+    weekInfoText.innerHTML = 'Use input box to enter date range here...';
+  }
+
   if(tasksArray.length !== 0) {
     for(let i = 0; i < dayBoxes.length; i++) {
       document.querySelector(dayBoxes[i]).innerHTML = '';
@@ -104,22 +111,16 @@ function printArray(taskList) {
 let editButtonCounter = 0;
 
 function changeInfo() {
-  console.log(`Start: ${editButtonCounter}`);
-  editButtonCounter += 1;
+  inputElement = document.querySelector('.js-input-name');
   textElement = document.querySelector('.js-change-info');
-  textElement.innerHTML = "<input style=\"margin-bottom: 0px;\"class=\"js-change-text\" placeholder=\"type info here\">";
-  
-  if(editButtonCounter === 2) {
-    console.log('In if block');
-    inputElement = document.querySelector('.js-change-text');
-    //console.log(`Input Box: ${inputElement}`);
-    console.log(inputElement);
-    let newInfo = inputElement.value;
-    console.log(`Input Text: ${newInfo}`);
-    console.log(`TextElement Text: ${textElement.value}`);
+  textElement.innerHTML = inputElement.value;
 
-    textElement.innerHTML = `<div><p>${newInfo}</p></div>`;
-    editButtonCounter = 0;
+  if(textElement.innerHTML === '') {
+    textElement.innerHTML = 'Use input box to enter date range here...';
   }
-  console.log(`End: ${editButtonCounter}`);
+
+  localStorage.setItem('weekInfo', inputElement.value);
+
+  inputElement.value = '';
+
 }
