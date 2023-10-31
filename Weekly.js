@@ -61,7 +61,7 @@ function addTodo(daySelect) {
 //whenever a change is made in any array, update the box on the page
 function renderTask(newTask) {
   const daySelect = newTask.day;
-  document.querySelector(dayBoxes[daySelect]).innerHTML += `<div>${newTask.name}</div>`;
+  document.querySelector(dayBoxes[daySelect]).innerHTML += `<div style="margin: 10px 5px;">${newTask.name}</div>`;
   console.log('New task added.');
 }
 
@@ -93,7 +93,7 @@ function renderAll() {
     for(let i = 0; i < tasksArray.length; i++) {
       const taskName = tasksArray[i].name;
       const daySelect = tasksArray[i].day;
-      document.querySelector(dayBoxes[daySelect]).innerHTML += `<div>${taskName}</div>`;
+      document.querySelector(dayBoxes[daySelect]).innerHTML += `<div style="margin: 10px 5px;">${taskName}</div>`;
     }
     console.log('Existing tasks loaded.');
   }
