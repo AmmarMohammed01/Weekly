@@ -19,8 +19,8 @@ function webpageView() {
       switchDayBox[i].style.color = 'white';
 
       //change buttons for day
-      switchDayButton[i].style['background-color'] = 'white';
-      switchDayButton[i].style.color = 'black';
+      // switchDayButton[i].style['background-color'] = 'white';
+      // switchDayButton[i].style.color = 'black';
     }
 
     //change button dark/light mode button color
@@ -41,8 +41,8 @@ function webpageView() {
       switchDayBox[i].style.color = 'black';
 
       //change buttons for day
-      switchDayButton[i].style['background-color'] = 'black';
-      switchDayButton[i].style.color = 'white';
+      // switchDayButton[i].style['background-color'] = 'black';
+      // switchDayButton[i].style.color = 'white';
     }
 
     document.querySelector('.button-view').style['background-color'] = 'black';
