@@ -52,7 +52,7 @@ function addTodo(daySelect) {
 
     //console.log(tasksArray.length);
     currentIndexOfTask = tasksArray.length - 1;
-    console.log(currentIndexOfTask);
+    //console.log(currentIndexOfTask);
 
     inputElement.value = '';
     //console.log(tasksArray);
