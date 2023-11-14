@@ -109,3 +109,16 @@ input {
   box-shadow: 0px 0px 20px rgba(0, 170, 255, 0.7);
   margin-bottom: 20px;
 }
+
+.checkbox-button {
+  border-style: solid;
+  border-radius: 50px;
+
+  background-color: white;
+  width: 20px;
+  height:20px;
+}
+
+.checkbox-button:hover {
+  background-color: rgb(185, 185, 185);
+}
