@@ -50,19 +50,23 @@ function addTodo(daySelect) {
     tasksArray.push(newTask); //add task to array
     localStorage.setItem('tasksArray', JSON.stringify(tasksArray)); //save array to storage
 
+    //console.log(tasksArray.length);
+    currentIndexOfTask = tasksArray.length - 1;
+    console.log(currentIndexOfTask);
+
     inputElement.value = '';
     //console.log(tasksArray);
 
-    renderTask(newTask);
+    renderTask(newTask, currentIndexOfTask);
   }
   //printArray(tasksArray);
 }
 
 //whenever a change is made in any array, update the box on the page
-function renderTask(newTask) {
+function renderTask(newTask, buttonID) {
   const daySelect = newTask.day;
-  document.querySelector(dayBoxes[daySelect]).innerHTML += `<div style="margin: 10px 5px;"><button class="checkbox-button" onclick="
-  completeTask()
+  document.querySelector(dayBoxes[daySelect]).innerHTML += `<div style="margin: 10px 5px;"><button class="checkbox-button" id="${buttonID}" onclick="
+  completeTask(${buttonID})
   "></button> ${newTask.name}</div>`;
   console.log('New task added.');
 }
@@ -95,7 +99,14 @@ function renderAll() {
     for(let i = 0; i < tasksArray.length; i++) {
       const taskName = tasksArray[i].name;
       const daySelect = tasksArray[i].day;
-      document.querySelector(dayBoxes[daySelect]).innerHTML += `<div style="margin: 10px 5px;"><button class="checkbox-button" onclick="completeTask();"></button> ${taskName}</div>`;
+      const taskCompleted = tasksArray[i].isCompleted;
+
+      document.querySelector(dayBoxes[daySelect]).innerHTML += `<div style="margin: 10px 5px;"><button class="checkbox-button" id="${i}" onclick="completeTask(${i});"></button> ${taskName}</div>`;
+
+      if(taskCompleted) {
+        document.getElementById(i).style['background-color'] = "rgb(0,180,255)";
+      }
+      
     }
     console.log('Existing tasks loaded.');
   }
@@ -127,7 +138,23 @@ function changeInfo() {
 
 }
 
-function completeTask() {
-  buttonElement = document.getElementById();
-  buttonElement.style['background-color'] = 'rgb(0,180,255)';
+function completeTask(buttonID) {
+  //console.log(buttonID);
+  buttonElement = document.getElementById(buttonID);
+  
+  //console.log(buttonElement.style['background-color']);
+  //currently background-color white applies to checkbox-button class, but not id - that is why this branch below initially sets up the background-color for each button by "id" when passed to function
+  if(!buttonElement.style['background-color']) {
+    buttonElement.style['background-color'] = 'white';
+  }
+
+  if(buttonElement.style['background-color'] == 'white') {
+    buttonElement.style['background-color'] = 'rgb(0,180,255)';
+    tasksArray[buttonID].isCompleted = true;
+  }
+  else {
+    buttonElement.style['background-color'] = 'white';
+    tasksArray[buttonID].isCompleted = false;
+  }
+  localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
 }

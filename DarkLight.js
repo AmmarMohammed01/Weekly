@@ -51,9 +51,3 @@ function webpageView() {
   }
 }
 
-// //Ability to mark tasks complete
-// function completeTask(elementID) {
-//   //console.log(elementID); //elementID is the input box itself
-//   setTimeout(() => { elementID.checked = false; }, 2000);
-
-// }
