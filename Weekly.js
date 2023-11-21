@@ -105,6 +105,7 @@ function renderAll() {
 
       if(taskCompleted) {
         document.getElementById(i).style['background-color'] = "rgb(0,180,255)";
+        document.getElementById(i).innerHTML = "&#10003;";
       }
       
     }
@@ -150,10 +151,12 @@ function completeTask(buttonID) {
 
   if(buttonElement.style['background-color'] == 'white') {
     buttonElement.style['background-color'] = 'rgb(0,180,255)';
+    buttonElement.innerHTML = "&#10003;";
     tasksArray[buttonID].isCompleted = true;
   }
   else {
     buttonElement.style['background-color'] = 'white';
+    buttonElement.innerHTML = ""; //&#8226;
     tasksArray[buttonID].isCompleted = false;
   }
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));

@@ -98,6 +98,8 @@ body {
 .button-change-info {
   border: solid;
   border-color: black;
+  border-radius: 20px;
+  padding: 5px 15px;
 }
 
 input {
@@ -113,6 +115,9 @@ input {
 .checkbox-button {
   border-style: solid;
   border-radius: 50px;
+  border-width: 1px;
+  font-size: 10px;
+  vertical-align: center;
 
   background-color: white;
   width: 20px;
