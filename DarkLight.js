@@ -7,6 +7,7 @@ function webpageView() {
   //if currently not dark mode
   if(webView === false) {
     webView = true;
+    document.querySelector('html').style.background = 'black';
     document.querySelector('body').style.background = 'black';
     document.querySelector('.title').style.color = 'white';
     document.querySelector('.info').style.color = 'white';
@@ -31,7 +32,8 @@ function webpageView() {
   }
   else {
     webView = false;
-    document.querySelector('body').style.background = 'rgb(230,230,230,0.9)';
+    document.querySelector('html').style.background = 'rgb(200,200,200)';
+    document.querySelector('body').style.background = 'rgba(200,200,200,0.9)';
     document.querySelector('.title').style.color = 'black';
     document.querySelector('.info').style.color = 'black';
     document.querySelector('.week-info').style.color = 'black';
