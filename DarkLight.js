@@ -31,7 +31,7 @@ function webpageView() {
   }
   else {
     webView = false;
-    document.querySelector('body').style.background = 'white';
+    document.querySelector('body').style.background = 'rgb(230,230,230,0.9)';
     document.querySelector('.title').style.color = 'black';
     document.querySelector('.info').style.color = 'black';
     document.querySelector('.week-info').style.color = 'black';
