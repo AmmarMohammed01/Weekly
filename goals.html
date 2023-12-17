@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weekly: Goals</title>
+    <link rel="stylesheet" href="Weekly.css">
+  </head>
+  <body>
+
+    <div style="display: grid;">
+      <p class="title">Goals</p>
+    </div>
+
+    <div class="goalsHTML">
+    </div>
+
+    <div style="
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    ">
+      <div></div>
+      <input type="text" class="input-js" placeholder="What are your goals?" style="box-shadow: none;">
+      <div>
+        <button style="
+          margin:5px;
+          background-color: purple;
+          border: none;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 10px;
+          " onclick="addGoal()">Add</button>
+          <button style="
+          background-color: red;
+          border: none;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 10px;
+          " onclick="clearAll()">Clear All</button>
+      </div>
+    </div>
+    
+    <script>
+      goalsSelect = document.querySelector('.goalsHTML');
+
+      function addGoal() {
+        inputBox = document.querySelector('.input-js');
+        console.log(inputBox.value);
+
+        goalsSelect.innerHTML += `<p style="text-align: center;">${inputBox.value}</p>`;
+
+        inputBox.value = '';
+      }
+
+      function clearAll() {
+        goalsSelect.innerHTML = '';
+      }
+    </script>
+
+  </body>
+</html>
