@@ -40,6 +40,15 @@
     
     <script>
       goalsSelect = document.querySelector('.goalsHTML');
+      let goalsArray = JSON.parse(localStorage.getItem('goalsArray')); //stores every goal inputed by user
+
+      //if goals array is not in local storage, create empty array
+      if(!goalsArray) {
+        goalsArray = [];
+      }
+
+      loadSaveData();
+      console.log(goalsArray);
 
       function addGoal() {
         inputBox = document.querySelector('.input-js');
@@ -47,11 +56,21 @@
 
         goalsSelect.innerHTML += `<p style="text-align: center;">${inputBox.value}</p>`;
 
+        goalsArray.push(inputBox.value);
+        localStorage.setItem('goalsArray', JSON.stringify(goalsArray));
+
         inputBox.value = '';
       }
 
       function clearAll() {
         goalsSelect.innerHTML = '';
+        goalsArray = [];
+        localStorage.setItem('goalsArray', JSON.stringify(goalsArray));
+      }
+
+      function loadSaveData() {
+        for(i = 0; i < goalsArray.length; i++)
+        goalsSelect.innerHTML += `<p style="text-align: center;">${goalsArray[i]}</p>`;
       }
     </script>
 
