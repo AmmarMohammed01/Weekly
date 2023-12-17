@@ -26,12 +26,20 @@
     
     <p class="info">By Ammar Mohammed</p>
     <div class="week-info">
+
       <div></div>
-      <div class="js-change-info"></div>
-      <div style="display: grid; grid-template-columns: 1fr; place-items: center left;">
-        <button class="button-change-info"
+
+      <div style="
+      display:grid;
+      grid-template-columns: 1fr 2fr 1fr;">
+        <div></div>
+        <div style="text-align: center;" class="js-change-info"></div>
+        <div style="display: grid; grid-template-columns: 1fr; place-items: center left;">
+          <button class="button-change-info"
         onclick="changeInfo()">Edit</button>
+        </div>
       </div>
+
     </div>
     
     <!--Perhaps use ReactJS to make a <task/> prop, that can be stored in array?-->

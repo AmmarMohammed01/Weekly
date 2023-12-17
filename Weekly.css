@@ -98,8 +98,8 @@ html, body {
 .button-change-info {
   /*border: solid;
   border-color: black;*/
-  border-radius: 20px;
-  padding: 5px 15px;
+  border-radius: 10px;
+  padding: 5px 10px;
 }
 
 input {

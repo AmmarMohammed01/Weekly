@@ -104,7 +104,7 @@ function renderAll() {
       document.querySelector(dayBoxes[daySelect]).innerHTML += `<div style="margin: 10px 5px;"><button class="checkbox-button" id="${i}" onclick="completeTask(${i});"></button> ${taskName}</div>`;
 
       if(taskCompleted) {
-        document.getElementById(i).style['background-color'] = "rgb(0,180,255)";
+        document.getElementById(i).style['background-color'] = "rgba(0,255,0,0.6)"; //rgb(0,180,255)
         document.getElementById(i).innerHTML = "&#10003;";
       }
       
@@ -143,14 +143,15 @@ function completeTask(buttonID) {
   //console.log(buttonID);
   buttonElement = document.getElementById(buttonID);
   
-  //console.log(buttonElement.style['background-color']);
+  console.log(buttonElement.style['background-color']);
   //currently background-color white applies to checkbox-button class, but not id - that is why this branch below initially sets up the background-color for each button by "id" when passed to function
+  //The first time you load the page, background-color is actually blank/white
   if(!buttonElement.style['background-color']) {
     buttonElement.style['background-color'] = 'white';
   }
 
   if(buttonElement.style['background-color'] == 'white') {
-    buttonElement.style['background-color'] = 'rgb(0,180,255)';
+    buttonElement.style['background-color'] = 'rgba(0,255,0,0.6)';
     buttonElement.innerHTML = "&#10003;";
     tasksArray[buttonID].isCompleted = true;
   }
