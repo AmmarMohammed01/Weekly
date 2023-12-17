@@ -143,7 +143,7 @@ function completeTask(buttonID) {
   //console.log(buttonID);
   buttonElement = document.getElementById(buttonID);
   
-  console.log(buttonElement.style['background-color']);
+  //console.log(buttonElement.style['background-color']);
   //currently background-color white applies to checkbox-button class, but not id - that is why this branch below initially sets up the background-color for each button by "id" when passed to function
   //The first time you load the page, background-color is actually blank/white
   if(!buttonElement.style['background-color']) {
