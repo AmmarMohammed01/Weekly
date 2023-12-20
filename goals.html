@@ -42,6 +42,7 @@
         goalsArray = [];
       }
 
+      let numberOfGoals = 0;
       loadSaveData();
       console.log(goalsArray);
 
@@ -60,11 +61,12 @@
     </div>
 
     <div>
-      <button style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="clearGoal()">Clear</button>
+      <button id="${numberOfGoals}" style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="removeGoal(${numberOfGoals})">Remove</button>
     </div>
   </div>
 </div>
 <div></div>`;
+        numberOfGoals++; //increment number of goals
 
         goalsArray.push(inputBox.value);
         localStorage.setItem('goalsArray', JSON.stringify(goalsArray));
@@ -91,7 +93,7 @@
     </div>
 
     <div>
-      <button style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="clearGoal()">Clear</button>
+      <button id="${i}" style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="removeGoal(${i})">Remove</button>
     </div>
   </div>
 </div>
@@ -102,8 +104,11 @@
 
       }
 
-      function clearGoal(){
-        
+      function removeGoal(goalNumber){
+        goalsArray.splice(goalNumber, 1);
+        localStorage.setItem('goalsArray', JSON.stringify(goalsArray));
+        goalsSelect.innerHTML = ""; //clear the list from the screen, before loading in the data again.
+        loadSaveData();
       }
     </script>
 
