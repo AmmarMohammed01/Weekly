@@ -61,7 +61,7 @@
     </div>
 
     <div>
-      <button id="${numberOfGoals}" style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="removeGoal(${numberOfGoals})">Remove</button>
+      <button style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="removeGoal(${numberOfGoals})">Remove</button>
     </div>
   </div>
 </div>
@@ -82,7 +82,7 @@
 
       function loadSaveData() {
         for(i = 0; i < goalsArray.length; i++)
-        goalsSelect.innerHTML += `<div></div>
+          goalsSelect.innerHTML += `<div></div>
 <div>
   <div style="display:flex; justify-content: center; background-color: rgba(255, 255, 255, 0.3); place-items: center; border-radius: 10px;">
     
@@ -93,14 +93,15 @@
     </div>
 
     <div>
-      <button id="${i}" style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="removeGoal(${i})">Remove</button>
+      <button style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="removeGoal(${i})">Remove</button>
     </div>
   </div>
 </div>
 <div></div>`;
+        numberOfGoals = i; // removes glitch when loading old list after refresh and adding new items - two items would have removeGoals(0) and etc.
       }
 
-      function editGoal() {
+      function editGoal(goalNumber) {
 
       }
 
