@@ -13,7 +13,7 @@
     <div class="goalsHTML" style="display:grid; grid-template-columns: 1fr 1fr 1fr; row-gap: 5px;">
     </div>
 
-    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; margin-top:10px;">
+    <div class="inputHTML" style="display:grid; grid-template-columns: 1fr 1fr 1fr; margin-top:10px;">
       <div></div>
       <div>
         <div style="display:flex; justify-content: center; background-color: rgba(255, 255, 255, 0.6); place-items: center; border-radius: 10px;">
@@ -31,6 +31,7 @@
           </div>
         </div>
       </div>
+      <div></div>
     </div>
     
     <script>
@@ -57,7 +58,7 @@
     <div style="width: 230px; padding: 5px 10px;">${inputBox.value}</div>
       
     <div>
-      <button style="margin:10px 5px; background-color: rgb(0, 60, 151); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="editGoal()">Edit</button>
+      <button style="margin:10px 5px; background-color: rgb(0, 60, 151); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="editGoal(${numberOfGoals})">Edit</button>
     </div>
 
     <div>
@@ -89,7 +90,7 @@
     <div style="width: 230px; padding: 5px 10px;">${goalsArray[i]}</div>
       
     <div>
-      <button style="margin:10px 5px; background-color: rgb(0, 60, 151); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="editGoal()">Edit</button>
+      <button style="margin:10px 5px; background-color: rgb(0, 60, 151); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="editGoal(${i})">Edit</button>
     </div>
 
     <div>
@@ -102,14 +103,70 @@
       }
 
       function editGoal(goalNumber) {
+        //change input box to editing mode
+        inputSelect = document.querySelector('.inputHTML');
+        inputSelect.innerHTML = `
+        <div></div>
+        <div>
+          <div style="display:flex; justify-content: center; background-color: rgba(255, 255, 255, 0.6); place-items: center; border-radius: 10px;">
+            <div style="width: 230px;">
+              <input type="text" class="edit-js" placeholder="Type new name of goal..." style="background-color: rgba(255, 255, 255, 0); outline:none; text-align: left; margin:auto;">
+              <!--margin:auto used to center input box, as place items center only worked for buttons-->
+            </div>
+              
+            <div>
+              <button style="margin:10px 5px; background-color: rgb(0, 60, 151); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="changeGoalName(${goalNumber})">Change</button>
+            </div>
+
+            <div>
+              <button style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="clearAll()">Clear All</button>
+            </div>
+          </div>
+        </div>
+        <div></div>
+        `;
+        inputBox = document.querySelector('.edit-js');
+        inputBox.value = goalsArray[goalNumber]; //get the goal's text you want to edit
 
       }
 
-      function removeGoal(goalNumber){
-        goalsArray.splice(goalNumber, 1);
-        localStorage.setItem('goalsArray', JSON.stringify(goalsArray));
+      function changeGoalName(goalNumber) {
+        inputBox = document.querySelector('.edit-js');
+        goalsArray[goalNumber] = inputBox.value;
+
+        localStorage.setItem('goalsArray', JSON.stringify(goalsArray)); //save updated array
         goalsSelect.innerHTML = ""; //clear the list from the screen, before loading in the data again.
-        loadSaveData();
+        loadSaveData(); //reload page with updated list
+
+        //exit editing mode for input box
+        inputSelect = document.querySelector('.inputHTML');
+        inputSelect.innerHTML = `
+        <div></div>
+        <div>
+          <div style="display:flex; justify-content: center; background-color: rgba(255, 255, 255, 0.6); place-items: center; border-radius: 10px;">
+            <div style="width: 230px;">
+              <input type="text" class="input-js" placeholder="What are your goals?" style="background-color: rgba(255, 255, 255, 0); outline:none; text-align: left; margin:auto;">
+              <!--margin:auto used to center input box, as place items center only worked for buttons-->
+            </div>
+              
+            <div>
+              <button style="margin:10px 5px; background-color: rgb(0, 60, 151); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="addGoal()">Add</button>
+            </div>
+      
+            <div>
+              <button style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="clearAll()">Clear All</button>
+            </div>
+          </div>
+        </div>
+        <div></div>
+        `;
+      }
+
+      function removeGoal(goalNumber){
+        goalsArray.splice(goalNumber, 1); //remove goal from array
+        localStorage.setItem('goalsArray', JSON.stringify(goalsArray)); //save updated array
+        goalsSelect.innerHTML = ""; //clear the list from the screen, before loading in the data again.
+        loadSaveData(); //reload page with updated list
       }
     </script>
 
