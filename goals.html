@@ -1,3 +1,27 @@
+<!--<input type="text" class="input-js" placeholder="What are your goals?" style="background-color: rgba(255, 255, 255, 0); outline:none; text-align: left;">-->
+<!--
+  <button style="
+          margin:5px;
+          background-color: rgb(0, 60, 151);
+          border: none;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 10px;
+          " onclick="addGoal()">Add</button>
+        -->
+<!--
+<button style="
+          margin: 5px;
+          background-color: red;
+          border: none;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 10px;
+          " onclick="clearAll()">Clear All</button>
+
+-->
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,37 +37,24 @@
     <div class="goalsHTML">
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
       <div></div>
-      <div style="
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      background-color: rgba(255, 255, 255, 0.35);
-      ">
-        <div><input type="text" class="input-js" placeholder="What are your goals?" style="background-color: rgba(255, 255, 255, 0);"></div>
-        <div>
-          <button style="
-          margin:5px;
-          background-color: rgb(0, 60, 151);
-          border: none;
-          color: white;
-          padding: 5px 10px;
-          border-radius: 10px;
-          " onclick="addGoal()">Add</button>
-        </div>
-        <div>
-        <button style="
-          margin: 5px;
-          background-color: red;
-          border: none;
-          color: white;
-          padding: 5px 10px;
-          border-radius: 10px;
-          " onclick="clearAll()">Clear All</button>
+      <div>
+        <div style="display:flex; justify-content: center; background-color: rgba(255, 255, 255, 0.3); place-items: center; border-radius: 10px;">
+          <div style="width: 230px;">
+            <input type="text" class="input-js" placeholder="What are your goals?" style="background-color: rgba(255, 255, 255, 0); outline:none; text-align: left; margin:auto;">
+            <!--margin:auto used to center input box, as place items center only worked for buttons-->
+          </div>
+            
+          <div>
+            <button style="margin:10px 5px; background-color: rgb(0, 60, 151); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="addGoal()">Add</button>
+          </div>
+    
+          <div>
+            <button style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="clearAll()">Clear All</button>
+          </div>
         </div>
       </div>
-      <div></div>
     </div>
     
     <script>
