@@ -23,7 +23,7 @@
           </div>
             
           <div>
-            <button style="margin:10px 5px; background-color: rgb(0, 60, 151); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="addGoal()">Add</button>
+            <button style="margin:10px 5px; background-color: rgb(0, 170, 0); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="addGoal()">Add</button>
           </div>
     
           <div>
@@ -108,18 +108,18 @@
         inputSelect.innerHTML = `
         <div></div>
         <div>
-          <div style="display:flex; justify-content: center; background-color: rgba(255, 255, 255, 0.6); place-items: center; border-radius: 10px;">
+          <div style="display:flex; justify-content: center; background-color: rgba(0, 145, 255, 0.3); place-items: center; border-radius: 10px;">
             <div style="width: 230px;">
               <input type="text" class="edit-js" placeholder="Type new name of goal..." style="background-color: rgba(255, 255, 255, 0); outline:none; text-align: left; margin:auto;">
               <!--margin:auto used to center input box, as place items center only worked for buttons-->
             </div>
               
             <div>
-              <button style="margin:10px 5px; background-color: rgb(0, 60, 151); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="changeGoalName(${goalNumber})">Change</button>
+              <button style="margin:10px 5px; background-color: rgb(150, 0, 200); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="changeGoalName(${goalNumber})">Change</button>
             </div>
 
             <div>
-              <button style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="clearAll()">Clear All</button>
+              <button style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="clearAllInEditMode()">Clear All</button>
             </div>
           </div>
         </div>
@@ -150,7 +150,7 @@
             </div>
               
             <div>
-              <button style="margin:10px 5px; background-color: rgb(0, 60, 151); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="addGoal()">Add</button>
+              <button style="margin:10px 5px; background-color: rgb(0, 170, 0); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="addGoal()">Add</button>
             </div>
       
             <div>
@@ -167,6 +167,34 @@
         localStorage.setItem('goalsArray', JSON.stringify(goalsArray)); //save updated array
         goalsSelect.innerHTML = ""; //clear the list from the screen, before loading in the data again.
         loadSaveData(); //reload page with updated list
+      }
+
+      function clearAllInEditMode() {
+        goalsSelect.innerHTML = '';
+        goalsArray = [];
+        localStorage.setItem('goalsArray', JSON.stringify(goalsArray));
+
+        inputSelect = document.querySelector('.inputHTML');
+        inputSelect.innerHTML = `
+        <div></div>
+        <div>
+          <div style="display:flex; justify-content: center; background-color: rgba(255, 255, 255, 0.6); place-items: center; border-radius: 10px;">
+            <div style="width: 230px;">
+              <input type="text" class="input-js" placeholder="What are your goals?" style="background-color: rgba(255, 255, 255, 0); outline:none; text-align: left; margin:auto;">
+              <!--margin:auto used to center input box, as place items center only worked for buttons-->
+            </div>
+              
+            <div>
+              <button style="margin:10px 5px; background-color: rgb(0, 170, 0); border: none; color: white; padding: 5px 10px; border-radius: 10px;" onclick="addGoal()">Add</button>
+            </div>
+      
+            <div>
+              <button style="margin: 10px 5px; background-color: red; border: none; color: white; padding: 5px 10px; border-radius: 10px; " onclick="clearAll()">Clear All</button>
+            </div>
+          </div>
+        </div>
+        <div></div>
+        `;
       }
     </script>
 
