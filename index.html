@@ -1,89 +1,81 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Weekly</title>
-
-    <link rel="stylesheet" href="Weekly.css">
+    <title>Ammar Mohammed</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+      p {
+        font-family: Arial;
+      }
+      .top-navigation-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        place-items: center;
+        background-color: rgb(130, 209, 255);
+        border-radius: 20px;
+      }
+      .top-buttons {
+        border: none;
+        padding: 30px 30px;
+        transition: background-color 0.15s;
+      }
+      .top-buttons:hover {
+        background-color: rgb(230,230,230);
+      }
+      .two-sections {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 20px;
+        background-color: rgba(200,200,200,0.5);
+        border: solid;
+      }
+      .app-title {
+        text-align: center;
+        font-family: Raleway;
+        font-size: 30px;
+        margin-bottom: 0;
+      }
+      .image {
+        width: 600px;
+        margin: 20px 20px;
+      }
+    </style>
   </head>
+
   <body>
-    <div style="display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    ">
-      <div><p><a href="/Weekly/goals.html">Checkout Weekly: Goals!</a></p></div>
-      <div class="title">Weekly</div>
-      <div style="display: grid;
-      grid-template-columns: 1fr;
-      place-items: center right;
-      ">
-        <button onclick="webpageView();"
-        class="js-button-view button-view">Dark Mode</button>
-      </div>
-    </div>
-    
-    <p class="info">By Ammar Mohammed</p>
-    <div class="week-info">
 
-      <div></div>
-
-      <div style="
-      display:grid;
-      grid-template-columns: 1fr 2fr 1fr;">
-        <div></div>
-        <div style="text-align: center;" class="js-change-info"></div>
-        <div style="display: grid; grid-template-columns: 1fr; place-items: center left;">
-          <button class="button-change-info"
-        onclick="changeInfo()">Edit</button>
-        </div>
+    <div class="top-navigation-bar">
+      <div>
+        <a href="/Weekly/weekly.html">
+          <button class="top-buttons">Weekly</button>
+        </a>
       </div>
-
-    </div>
-    
-    <!--Perhaps use ReactJS to make a <task/> prop, that can be stored in array?-->
-
-    <div class="week-container">
-      <div class="day-container">
-        <button class="button-day" onclick="addTodo(0)">Sunday</button>
-        <div class="js-output1"></div>
-      </div>
-      <div class="day-container">
-        <button class="button-day" onclick="addTodo(1)">Monday</button>
-        <div class="js-output2"></div>
-      </div>
-      <div class="day-container">
-        <button class="button-day" onclick="addTodo(2)">Tuesday</button>
-        <div class="js-output3"></div>
-      </div>
-      <div class="day-container">
-        <button class="button-day" onclick="addTodo(3)">Wednesday</button>
-        <div class="js-output4"></div>
-      </div>
-      <div class="day-container">
-        <button class="button-day" onclick="addTodo(4)">Thursday</button>
-        <div class="js-output5"></div>
-      </div>
-      <div class="day-container">
-        <button class="button-day" onclick="addTodo(5)">Friday</button>
-        <div class="js-output6"></div>
-      </div>
-      <div class="day-container">
-        <button class="button-day" onclick="addTodo(6)">Saturday</button>
-        <div class="js-output7"></div>
+      <div><h2>Ammar Mohammed</h2></div>
+      <div>
+        <a href="/Weekly/goals.html">
+          <button class="top-buttons">Goals</button>
+        </a>
       </div>
     </div>
 
-    <div style="display: grid;
-    place-items: center;">
-      <input placeholder="Your task here..." class="js-input-name">
-      <button onclick="clearAll();"
-      class="button-clear-tasks"
-      >Clear All</button>
+    <div class="two-sections">
+      <div>
+        <h3 class="app-title">Weekly</h3>
+        <p style="margin: 20px 20px;">
+          Weekly is a task calendar. You can add tasks according to what day you have to complete them, then click a toggle button to mark tasks complete. The tasks will be conveniently stored on your webpage to view at any time. Currently optimized for desktop user experience.
+        </p>
+        <img src="/Images/WeeklyIMG.png" class="image">
+      </div>
+      <div>
+        <h3 class="app-title">Goals</h3>
+        <p style="margin: 20px 20px;">Have tasks you want to complete, but have not really set on what day you will complete it? Use Goals. Goals works like a traditional to-do list. Just type the name of the task, then add it to the list. Once you're finished, you can remove it. Made a typo in your task entry? No worries, you can edit it.</p>
+        <img src="/Images/GoalsIMG.png" class="image" style="width:400px;">
+      </div>
     </div>
-    
-    <script src="Weekly.js"></script>
-    <script src="DarkLight.js"></script>
+
   </body>
 </html>
