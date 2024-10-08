@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ammar Mohammed</title>
+    <title>Weekly Homepage</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,24 +10,37 @@
     <style>
       .top-navigation-bar {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        place-items: center;
-        background-color: rgb(130, 209, 255);
-        border-radius: 20px;
+        grid-template-columns: 250px 80px 80px;
+        place-items: left;
+        background-color: rgb(102, 0, 255);
+        border-radius: 0px;
+        font-family: Raleway;
+      }
+      .page-title {
+        text-align: center;
+        color: white;
       }
       .top-buttons {
         border: none;
-        padding: 30px 30px;
+        padding: 10px 10px;
+        border-radius: 15px;
         transition: background-color 0.15s;
+        background-color: white;
+        color: rgb(102, 0, 255);
+        font-size: 15px;
+        font-weight: bold;
       }
       .top-buttons:hover {
-        background-color: rgb(230,230,230);
+        background-color: rgb(232, 220, 255);
       }
       .two-sections {
         display: inline-flex;
-        margin-top: 20px;
-        background-color: rgba(200,200,200,0.5);
+        margin-top: 10px;
+        background-color: rgb(214, 192, 255);
         border: solid;
+        border-radius: 10px;
+        border-color: rgb(102, 0, 255);
+        border-width: 4px;
       }
       .app-title {
         text-align: center;
@@ -49,17 +62,19 @@
   <body>
 
     <div class="top-navigation-bar">
-      <div>
+      <div class="page-title"><h2>Weekly Homepage</h2></div>
+      
+      <div style="align-content: center;">
         <a href="/Weekly/weekly.html">
           <button class="top-buttons">Weekly</button>
         </a>
       </div>
-      <div><h2>Ammar Mohammed</h2></div>
-      <div>
+      <div style="align-content: center;">
         <a href="/Weekly/goals.html">
           <button class="top-buttons">Goals</button>
         </a>
       </div>
+
     </div>
 
     <!--<div style="display:grid; grid-template-columns: 1fr 1fr; column-gap: 5px;">-->
