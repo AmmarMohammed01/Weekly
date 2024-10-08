@@ -11,12 +11,18 @@ html, body {
   font-weight: bold;
   font-size: 50px;
   text-align: center;
-  margin-top:10px;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  color: white;
 }
 
 .info, .week-info {
   text-align: center;
+}
+
+.info {
+  margin-top: 0px;
+  color: white;
 }
 
 .week-info {
