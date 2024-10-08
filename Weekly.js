@@ -16,50 +16,58 @@ function addTodo(daySelect) {
   const inputElement = document.querySelector('.js-input-name');
   const name = inputElement.value;
 
-  //if nothing in input box and day button pressed: clear the day
-  if(name === '') {
-    document.querySelector(dayBoxes[daySelect]).innerHTML = '';
-
-    //store indecies of tasks with certain day value here
-    let tasksToRemove = [];
-    for(let i = 0; i < tasksArray.length; i++) {
-      if(tasksArray[i].day === daySelect) {
-        tasksToRemove.push(i);
-      }
-      console.log(tasksToRemove);
-    }
-
-    //remove tasks at the indicies
-    if(tasksToRemove.length !== 0) {
-      for(let i = 0; i < tasksToRemove.length; i++){
-        console.log(`At index ${i}: ${JSON.stringify(tasksArray[tasksToRemove[i] - i])}`);
-        tasksArray.splice(tasksToRemove[i] - i,1); //tasktorem array value minus loop index because taskArray changing in size
-      }
-      localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-      console.log('Tasks removed!');
-    }
-    else {
-      console.log('No tasks removed');
-    }
-    renderAll();
-  }
-  //or else add a new task
-  else {
+  if(name !== "") {
     const newTask = {name, day: daySelect, isCompleted: false};
 
     tasksArray.push(newTask); //add task to array
     localStorage.setItem('tasksArray', JSON.stringify(tasksArray)); //save array to storage
-
+  
     //console.log(tasksArray.length);
     currentIndexOfTask = tasksArray.length - 1;
     //console.log(currentIndexOfTask);
-
+  
     inputElement.value = '';
     //console.log(tasksArray);
-
+  
     renderTask(newTask, currentIndexOfTask);
   }
+  else {
+    alert("Cannot add blank item!");
+  }
   //printArray(tasksArray);
+}
+
+function clearDay(daySelect) {
+  //first empty day box html
+  document.querySelector(dayBoxes[daySelect]).innerHTML = '';
+
+  //store indecies of tasks with certain day value here
+  /*In tasksArray, all the tasks are stored.
+  The daySelect is an integer corresponding to the day the button
+  was pressed. Example: Sunday is day 0, Monday is day 1...
+  Now look at the task in the task array and see its "day" 
+  attribute. If the day matches with the daySelect from remove button, then put that index in a new array.*/
+  let tasksToRemove = [];
+  for(let i = 0; i < tasksArray.length; i++) {
+    if(tasksArray[i].day === daySelect) {
+      tasksToRemove.push(i);
+    }
+    console.log(tasksToRemove);
+  }
+
+  //remove tasks at the indicies
+  if(tasksToRemove.length !== 0) {
+    for(let i = 0; i < tasksToRemove.length; i++){
+      console.log(`At index ${i}: ${JSON.stringify(tasksArray[tasksToRemove[i] - i])}`);
+      tasksArray.splice(tasksToRemove[i] - i,1); //tasktorem array value minus loop index because taskArray changing in size
+    }
+    localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+    console.log('Tasks removed!');
+  }
+  else {
+    console.log('No tasks removed');
+  }
+  renderAll();
 }
 
 //whenever a change is made in any array, update the box on the page
