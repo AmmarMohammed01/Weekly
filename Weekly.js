@@ -120,8 +120,15 @@ function renderAll() {
     console.log('Existing tasks loaded.');
   }
   else {
+    for(let i = 0; i < dayBoxes.length; i++) {
+      document.querySelector(dayBoxes[i]).innerHTML = '';
+    }
     console.log('No existing tasks found to load. Add tasks to get started.');
   }
+
+  document.querySelector(".js-remove-a-task").innerHTML = `<button onclick="removeView();"
+      class="button-clear-tasks"
+      >Remove A Task</button>`;
 }
 
 function printArray(taskList) {
@@ -169,4 +176,41 @@ function completeTask(buttonID) {
     tasksArray[buttonID].isCompleted = false;
   }
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+}
+
+function removeView() {
+  if(tasksArray.length !== 0) {
+    for(let i = 0; i < dayBoxes.length; i++) {
+      document.querySelector(dayBoxes[i]).innerHTML = '';
+    }
+
+    for(let i = 0; i < tasksArray.length; i++) {
+      const taskName = tasksArray[i].name;
+      const daySelect = tasksArray[i].day;
+      const taskCompleted = tasksArray[i].isCompleted;
+
+      document.querySelector(dayBoxes[daySelect]).innerHTML += `<div style="margin: 10px 5px;"><button class="checkbox-button" style="background-color: red;" id="${i}" onclick="removeTask(${i});">x</button> ${taskName}</div>`;
+      
+      document.querySelector(".js-remove-a-task").innerHTML = '';
+
+      document.querySelector(".js-remove-a-task").innerHTML += `<button onclick="renderAll();"
+      class="button-clear-tasks"
+      >Cancel</button>`;
+    }
+    console.log('MODE ENTERED: Remove a task.');
+  }
+  else {
+    alert("No available tasks to remove, add a task first.");
+  }
+}
+
+function removeTask(taskIndex){
+  //remove tasks at the index in taskArray
+  console.log(`At index ${taskIndex}: ${JSON.stringify(tasksArray[taskIndex])}`);
+  tasksArray.splice(taskIndex,1); 
+
+  localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+  console.log('Task removed!');
+  
+  renderAll();
 }
