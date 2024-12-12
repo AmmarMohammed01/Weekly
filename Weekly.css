@@ -26,9 +26,7 @@ html, body {
 }
 
 .week-info {
-  display: grid;
   padding: 5px 5px;
-  grid-template-columns: 1fr 1fr 1fr;
   margin-bottom: 10px;
 }
 
@@ -153,3 +151,7 @@ input {
 /*.checkbox-button:hover {
   background-color: rgb(185, 185, 185);
 }*/
+
+.css-change-info {
+  font-size: 40px;
+}

@@ -4,27 +4,20 @@
     <title>Weekly</title>
 
     <link rel="stylesheet" href="Weekly.css">
+    <link rel="stylesheet" href="navbar.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div style="display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    ">
-      <div><p><a href="/Weekly/goals.html">Checkout Weekly: Goals!</a></p></div>
-      <div class="title">Weekly</div>
-      <div style="display: grid;
-      grid-template-columns: 1fr;
-      place-items: center right;
-      ">
-        <button onclick="webpageView();"
-        class="js-button-view button-view">Dark Mode</button>
-      </div>
+    <div class="top-navigation-bar">
+      <div class="page-title"><h2>Weekly App</h2></div>
+      <div> <a href="./index.html"> <button class="top-buttons">Home</button> </a> </div>
+      <div> <a href="./weekly.html"> <button class="top-buttons">Weekly</button> </a> </div>
+      <div> <a href="./goals.html"> <button class="top-buttons">Goals</button> </a> </div>
     </div>
     
-    <p class="info">By Ammar Mohammed</p>
     <div class="week-info">
 
       <div></div>
@@ -33,7 +26,7 @@
       display:grid;
       grid-template-columns: 1fr 2fr 1fr;">
         <div></div>
-        <div style="text-align: center;" class="js-change-info"></div>
+        <div class="js-change-info css-change-info"></div>
         <div style="display: grid; grid-template-columns: 1fr; place-items: center left;">
           <button class="button-change-info"
         onclick="changeInfo()">Edit</button>
