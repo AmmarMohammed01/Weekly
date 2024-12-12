@@ -1,6 +1,7 @@
 html, body {
   font-family: Raleway, Arial;
-  background-image: linear-gradient(to top,rgb(172, 255, 220) 1%, rgb(147, 95, 252));
+  /*background-image: linear-gradient(to top,rgb(172, 255, 220) 1%, rgb(147, 95, 252));*/
+  background-image: url('images/Design1.png');
   height: 100%;
 }
 
