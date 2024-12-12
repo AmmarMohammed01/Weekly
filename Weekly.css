@@ -101,14 +101,12 @@ html, body {
 }
 
 .button-clear-tasks {
-  display: block;
   background-color: rgb(200,0,0);
   font-weight: bold;
-  border-radius: 20px;
+  border-radius: 10px;
 
   padding: 10px 15px;
-
-  margin-top: 10px;
+  margin-right: 0px;
 }
 
 .button-clear-tasks:hover {
@@ -127,8 +125,7 @@ input {
   text-align: center;
   padding: 5px 10px;
   border: none;
-  border-radius: 20px;
-  margin-bottom: 20px;
+  border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.35);
 }
 
@@ -154,4 +151,10 @@ input {
 
 .css-change-info {
   font-size: 40px;
+}
+
+.input-menu {
+  display:grid;
+  grid-template-columns: 1fr 250px 150px 100px 1fr;
+  place-items: center;
 }
