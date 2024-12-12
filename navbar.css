@@ -32,12 +32,13 @@
   width: 75%;
   place-self: center;
   margin-top: 10px;
-  background-color: rgb(214, 192, 255);
-  /*background-color: rgb(192, 212, 255);*/
+  background-color: rgb(214, 192, 255, 0.75);
+  /*color: white;
+  background-color: rgba(0, 0, 0, 0.50);*/
   border: solid;
   border-radius: 20px;
   border-color: rgb(102, 0, 255);
-  border-width: 4px;
+  border-width: 2px;
 }
 .app-title {
   text-align: center;
