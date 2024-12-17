@@ -1,6 +1,6 @@
 let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-//START: Load in the week, all the day boxes
+//1START: Load in the week, all the day boxes
 let outputHTML = '';
 const weekContainer = document.querySelector('.week-container');
 
@@ -23,10 +23,11 @@ days.forEach((day, index) => {
 });
 
 weekContainer.innerHTML = outputHTML;
-//FINISH: Load in the week, all the day boxes
+//1FINISH: Load in the week, all the day boxes
 
-//START: Add buttons change to input box
+//2START: Add buttons change to input box
 const addButtons = document.querySelectorAll('.js-add-button');
+
 addButtons.forEach( (button) => {
   button.addEventListener('click', () => {
     const {day} = button.dataset;
@@ -34,8 +35,17 @@ addButtons.forEach( (button) => {
     addBox.classList.add('css2-add-box');
 
     addBox.innerHTML = `
-    <input class="css2-input" placeholder="Type task to add">
+    <input class="css2-input js-input-${day}" placeholder="Type task to add">
     <button>+</button>
     `;
+
+    const inputElement = document.querySelector(`.js-input-${day}`);
+    inputElement.addEventListener('keydown', () => {
+      if(event.key === 'Enter') {
+        document.querySelector(`.js-output-${day}`).innerHTML += `<div>${inputElement.value}</div>`;
+      }
+
+    });
   });
 });
+//2FINISH: Add tasks
