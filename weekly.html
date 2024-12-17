@@ -24,18 +24,17 @@
     -->
 
     <div class="week-info">
-
-      <div></div>
-
       <div style="
-      display:grid;
-      grid-template-columns: 1fr 2fr 1fr;">
-        <div></div>
-        <div class="js-change-info css-change-info"></div>
-        <div style="display: grid; grid-template-columns: 1fr; place-items: center left;">
+      display: flex;
+      flex-direction: row;
+      ">
+
+        <div class="js-change-info css-change-info" style="flex:1;"></div>
+        <div style="place-self: center;">
           <button class="button-change-info"
         onclick="changeInfo()">Edit</button>
         </div>
+
       </div>
 
     </div>
