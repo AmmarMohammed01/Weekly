@@ -1,3 +1,9 @@
+let taskList = JSON.parse(localStorage.getItem('taskList'));
+if(!taskList) {
+  taskList = [];
+}
+console.log(taskList);
+
 let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 //1START: Load in the week, all the day boxes
@@ -42,10 +48,39 @@ addButtons.forEach( (button) => {
     const inputElement = document.querySelector(`.js-input-${day}`);
     inputElement.addEventListener('keydown', () => {
       if(event.key === 'Enter') {
-        document.querySelector(`.js-output-${day}`).innerHTML += `<div>${inputElement.value}</div>`;
-      }
+        document.querySelector(`.js-output-${day}`).innerHTML += `
+        <div>
+          ${inputElement.value} 
+          <button>Check</button>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>`;
 
+        taskList.push({taskName: inputElement.value, isComplete: false, day: day});
+        //saveData();
+        inputElement.value = '';
+        console.log(JSON.stringify(taskList));
+      }
     });
   });
 });
 //2FINISH: Add tasks
+
+function saveData() {
+  localStorage.setItem('taskList', JSON.stringify(taskList));
+}
+
+function renderTasks() {
+  taskList.forEach((task) => {
+    document.querySelector(`.js-output-${task.day}`).innerHTML += `
+    <div>
+      ${task.taskName} 
+      <button>Check</button>
+      <button>Edit</button>
+      <button>Delete</button>
+    </div>
+    `;
+  });
+}
+
+renderTasks();
