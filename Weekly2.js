@@ -2,7 +2,7 @@ let taskList = JSON.parse(localStorage.getItem('taskList'));
 if(!taskList) {
   taskList = [];
 }
-console.log(taskList);
+// console.log(taskList);
 
 let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -45,54 +45,9 @@ document.querySelectorAll('.js-clear-day-button').forEach((button) => {
 //CLEAR WEEK
 document.querySelector('.js-clear-all-button').addEventListener('click', () => { taskList = []; saveAndRender();});
 
-//2START: Add buttons change to input box
+//Add buttons change to input box
 let addButtons = document.querySelectorAll('.js-add-button');
 addTask(addButtons);
-// addButtons.forEach( (button) => {
-//   button.addEventListener('click', () => {
-//     const {day} = button.dataset;
-//     const addBox = document.querySelector(`.js-add-box-${day}`);
-//     addBox.classList.add('css2-add-box');
-//     addBox.classList.remove('css2-add-box-original');
-
-//     addBox.innerHTML = `
-//     <input class="css2-input js-input-${day}" placeholder="Type task to add">
-//     <button class="css2-back-task-button js-back-task-button">Back</button>
-//     <button class="css2-add-task-button js-add-task-button-${day}">+</button>
-//     `;
-
-//     const inputElement = document.querySelector(`.js-input-${day}`);
-//     inputElement.addEventListener('keydown', () => {
-//       if(event.key === 'Enter') {
-//         const taskId = Math.random();
-//         taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
-//         inputElement.value = '';
-//         saveAndRender();
-//       }
-//     });
-
-//     const addTaskButton = document.querySelector(`.js-add-task-button-${day}`);
-//     addTaskButton.addEventListener('click', () => {
-//       const taskId = Math.random();
-//       taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
-//       inputElement.value = '';
-//       saveAndRender();
-//     });
-
-//     const backTaskButton = document.querySelectorAll(`.js-back-task-button`);
-//     backTaskButton.forEach((button) => {
-//       button.addEventListener('click', () => {
-//         addBox.innerHTML = `
-//         <button class="js-add-button css2-add-button" data-day=${day}>Add</button>`;
-//         addBox.classList.remove('css2-add-box');
-//         addBox.classList.add('css2-add-box-original');
-//         addButtons = document.querySelectorAll('.js-add-button');
-//       });
-//     });
-
-//   });
-// });
-//2FINISH: Add tasks
 
 function saveData() {
   localStorage.setItem('taskList', JSON.stringify(taskList));
@@ -104,15 +59,15 @@ function renderTasks() {
   }
 
   taskList.forEach((task) => {
-    checkBtnHTML = task.isComplete ? `<button class="js-check-button css2-checkbtn-complete" data-task-id=${task.taskId}>Check</button>` : `<button class="js-check-button" data-task-id=${task.taskId}>Check</button>`
+    checkBtnHTML = task.isComplete ? `<button class="js-check-button css2-checkbtn-complete css2-checkbtn" data-task-id=${task.taskId}>Check</button>` : `<button class="js-check-button css2-checkbtn" data-task-id=${task.taskId}>Check</button>`
 
     document.querySelector(`.js-output-${task.day}`).innerHTML += `
     <div class="js-task-box-${task.taskId} css2-task-box">
-      <div>${task.taskName}</div>
-      <div>
+      <div class="css2-task-field">${task.taskName}</div>
+      <div class="css2-task-buttons-box">
         ${checkBtnHTML}
-        <button class="js-edit-button" data-task-id=${task.taskId}>Edit</button>
-        <button class="js-delete-button" data-task-id="${task.taskId}">Delete</button>
+        <button class="js-edit-button css2-edit-button" data-task-id=${task.taskId}>Edit</button>
+        <button class="js-delete-button css2-delete-button" data-task-id="${task.taskId}">Delete</button>
       </div>
     </div>
     `;
@@ -141,8 +96,10 @@ function renderTasks() {
       });
       taskBox.innerHTML = `
       <input class="js-edit-input css2-edit-input" value="${taskList[foundTaskIndex].taskName}" data-index="${foundTaskIndex}">
-      <button class="js-save-edit-button" data>Save Edit</button>
-      <button class="js-cancel-edit-button">Cancel Edit</button>
+      <div class = "css2-edit-buttons-box">
+        <button class="js-save-edit-button css2-save-edit-button" data>Save Edit</button>
+        <button class="js-cancel-edit-button css2-cancel-edit-button">Cancel Edit</button>
+      </div>
       `;
 
       //editor input field: can only save one open edit
@@ -249,4 +206,56 @@ function completeTask(completeId) {
 function saveAndRender() {
   saveData();
   renderTasks();
+}
+
+let title = JSON.parse(localStorage.getItem('weekly2-title'));
+if(!title) title = 'Title goes here...';
+
+const titleElement = document.querySelector('.js-change-info');
+titleElement.innerHTML = title;
+const titleEditButtonBox = document.querySelector('.js-title-edit-button-box');
+const changeTitleButton = document.querySelector('.js-button-change-info');
+editTitle(changeTitleButton);
+
+function editTitle(button1) {
+  button1.addEventListener('click', () => {
+    titleElement.innerHTML = `<input class="js-change-info-input css1-input" placeholder="Please enter a title">`;
+    titleEditButtonBox.innerHTML = `
+    <button class="js-save-title-edit-button button-change-info">Save Edit</button>
+    <button class="js-cancel-title-edit-button button-change-info">Cancel Edit</button>
+    `;
+  
+    let tempTitle = '';
+
+    titleElement.addEventListener('keydown', () => {
+      if(event.key === 'Enter') {
+        // console.log(document.querySelector('.js-change-info-input')); //some null error is occruing for line below
+        tempTitle = document.querySelector('.js-change-info-input').value;
+        titleElement.innerHTML = !(tempTitle === '') ? tempTitle : "Empty Title";
+        localStorage.setItem('weekly2-title', JSON.stringify(tempTitle));
+
+        titleEditButtonBox.innerHTML = `<button class="button-change-info js-button-change-info">Edit</button>`;
+        editTitle(document.querySelector('.js-button-change-info'));
+      }
+    });
+  
+    const saveTitleEditButton = document.querySelector('.js-save-title-edit-button');
+    saveTitleEditButton.addEventListener('click', () => {
+      tempTitle = document.querySelector('.js-change-info-input').value;
+      titleElement.innerHTML = !(tempTitle === '') ? tempTitle : "Empty Title";
+      localStorage.setItem('weekly2-title', JSON.stringify(tempTitle));
+
+      titleEditButtonBox.innerHTML = `<button class="button-change-info js-button-change-info">Edit</button>`;
+      editTitle(document.querySelector('.js-button-change-info'));
+    });
+
+    const cancelTitleEditButton = document.querySelector('.js-cancel-title-edit-button');
+    cancelTitleEditButton.addEventListener('click', () => {
+      titleElement.innerHTML = title;
+
+      titleEditButtonBox.innerHTML = `<button class="button-change-info js-button-change-info">Edit</button>`;
+      editTitle(document.querySelector('.js-button-change-info'));
+    });
+  
+  });
 }

@@ -206,23 +206,111 @@ html, body {
   padding:10px;
 }
 
+.css2-checkbtn {
+  border: none;
+  border-radius: 0px 0px 0px 10px;
+  background-color: rgb(200, 200, 200);
+  transition: opacity 0.5s;
+}
+
+.css2-checkbtn:hover {
+  /* background-color: #0CF574; */
+  opacity: 0.8;
+}
+
+.css2-checkbtn:active {
+  background-color: #00a44a;
+}
+
 .css2-checkbtn-complete {
   background-color: #0CF574;
 }
 
+.css2-checkbtn-complete:hover {
+  /* background-color: rgb(200, 200, 200); */
+  opacity: 0.8;
+}
+
+.css2-checkbtn-complete:active {
+  background-color: rgb(150, 150, 150);
+}
+
+.css2-edit-button { 
+  border: none;
+  background-color: azure;
+  transition: background-color 0.5s;
+}
+
+.css2-edit-button:hover {
+  background-color: rgb(140, 140, 255);
+}
+
+.css2-delete-button {
+  border: none;
+  border-radius: 0px 0px 10px 0px;
+  background-color: rgb(200, 200, 200);
+  transition: background-color 0.5s;
+}
+
+.css2-delete-button:hover {
+  background-color: rgb(255, 100, 100);
+}
+
+.css2-task-field {
+  margin: 10px;
+}
+
 .css2-task-box {
-  background-color:rgba(0, 0, 0, 0.3);
-  margin: 5px 5px;
-  border-radius: 10px;
-  padding: 10px;
-  display: grid;
-  grid-template-rows: 1fr 25px;
+  background-color:rgba(0, 0, 0, 0.2);
   color: white;
+
+  border-radius: 10px;
+  margin: 10px 0px;
+  padding: 0px;
+  width: 85%;
+  
+  display: grid;
+  place-self: center;
+  grid-template-rows: 1fr 25px;
+}
+
+.css2-task-buttons-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .css2-edit-input {
-  border: solid;
-  border-color: purple;
+  border: none;
+  border-radius: 10px 10px 0px 0px; /*topL, topR, botR, botL*/
+  height: 30px;
+  padding: 0px 0px 0px 20px; /*top, right, bottom, left*/
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.css2-save-edit-button {
+  border: none;
+  border-radius: 0px 0px 0px 10px;
+  transition: background-color 0.5s;
+}
+
+.css2-save-edit-button:hover {
+  background-color: rgb(140, 140, 255);
+}
+
+.css2-cancel-edit-button {
+  border: none;
+  border-radius: 0px 0px 10px 0px;
+  transition: background-color 0.5s;
+}
+
+.css2-cancel-edit-button:hover {
+  background-color: rgb(255, 100, 100);
+}
+
+.css2-edit-buttons-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .css2-add-button {
