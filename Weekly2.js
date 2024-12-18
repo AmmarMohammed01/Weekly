@@ -16,7 +16,7 @@ days.forEach((day, index) => {
   
     <div class="day-menu-bar">
       <div style="flex: 1; text-align: left; margin: 2px 10px;">${day}</div>
-      <button class="button-day">-</button>
+      <button class="button-day js-clear-day-button" data-day=${index}>-</button>
     </div>
   
     <div class="js-output-${index}"></div>
@@ -30,6 +30,17 @@ days.forEach((day, index) => {
 
 weekContainer.innerHTML = outputHTML;
 //1FINISH: Load in the week, all the day boxes
+
+//CLEAR ENTIRE DAY
+document.querySelectorAll('.js-clear-day-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    const {day} = button.dataset;
+    taskList = taskList.filter((task) => {
+      if (!(task.day === day)) return task;
+    });
+    saveAndRender();
+  });
+});
 
 //2START: Add buttons change to input box
 const addButtons = document.querySelectorAll('.js-add-button');
@@ -50,11 +61,8 @@ addButtons.forEach( (button) => {
       if(event.key === 'Enter') {
         const taskId = Math.random();
         taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
-        saveData();
         inputElement.value = '';
-
-        console.log(JSON.stringify(taskList));
-        renderTasks();
+        saveAndRender();
       }
     });
   });
@@ -77,7 +85,7 @@ function renderTasks() {
     <div class="js-task-box-${task.taskId}">
       ${task.taskName} 
       ${checkBtnHTML}
-      <button>Edit</button>
+      <button class="js-edit-button">Edit</button>
       <button class="js-delete-button" data-task-id="${task.taskId}">Delete</button>
     </div>
     `;
@@ -120,8 +128,12 @@ function completeTask(completeId) {
   taskList.forEach((task, index) => {
     if(task.taskId === Number(completeId)) { 
       taskList[index].isComplete = !taskList[index].isComplete ? true : false;
-      saveData();
-      renderTasks(); //I feel like there is a better way of doing this
+      saveAndRender(); //I feel like there is a better way to update color w/o rendering page everytime
     }
   });
+}
+
+function saveAndRender() {
+  saveData();
+  renderTasks();
 }
