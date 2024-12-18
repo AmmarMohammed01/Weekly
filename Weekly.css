@@ -51,6 +51,9 @@ html, body {
 
   background-color: rgba(255, 255, 255, 0.35);
   transition: box-shadow 0.25s;
+
+  display: grid;
+  grid-template-rows: 36px 1fr 36px;
 }
 
 .day-container:hover {
@@ -165,4 +168,18 @@ input {
   display:grid;
   grid-template-columns: 1fr 250px 150px 100px 1fr;
   place-items: center;
+}
+
+/*WEEKLY2*/
+.css2-input {
+  width: 165px;
+}
+
+.css2-add-box {
+  display: grid;
+  grid-template-columns: 1fr 40px;
+}
+
+.css2-checkbtn-complete {
+  background-color: #0CF574;
 }
