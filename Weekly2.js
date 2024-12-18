@@ -22,7 +22,7 @@ days.forEach((day, index) => {
     <div class="js-output-${index}"></div>
   
     <div class="js-add-box-${index} css2-add-box-original">
-      <button class="js-add-button css2-add-button" data-day=${index}>Add</button>
+      <button class="js-add-button css2-add-button" data-day=${index}>&plus;</button>
     </div>
     
   </div>`;
@@ -168,7 +168,7 @@ function addTask(buttons) {
       backTaskButton.forEach((button) => {
         button.addEventListener('click', () => {
           addBox.innerHTML = `
-          <button class="js-add-button css2-add-button" data-day=${day}>Add</button>`;
+          <button class="js-add-button css2-add-button" data-day=${day}>&plus;</button>`;
           addBox.classList.remove('css2-add-box');
           addBox.classList.add('css2-add-box-original');
           buttons1 = document.querySelectorAll('.js-add-button');
