@@ -314,8 +314,8 @@ html, body {
 }
 
 .css2-add-button {
-  /* background-color: rgba(102,0,255,0.2); */
-  background-color: rgb(190, 149, 250);
+  background-color: rgba(102,0,255);
+  /* background-color: rgb(190, 149, 250); */
   /* background-color: transparent; */
   /* color: rgb(102,0,255); */
   color: white;
