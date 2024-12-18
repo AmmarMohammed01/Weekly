@@ -42,6 +42,9 @@ document.querySelectorAll('.js-clear-day-button').forEach((button) => {
   });
 });
 
+//CLEAR WEEK
+document.querySelector('.js-clear-all-button').addEventListener('click', () => { taskList = []; saveAndRender();});
+
 //2START: Add buttons change to input box
 const addButtons = document.querySelectorAll('.js-add-button');
 
@@ -53,7 +56,7 @@ addButtons.forEach( (button) => {
 
     addBox.innerHTML = `
     <input class="css2-input js-input-${day}" placeholder="Type task to add">
-    <button>+</button>
+    <button class="js-add-task-button-${day}">+</button>
     `;
 
     const inputElement = document.querySelector(`.js-input-${day}`);
@@ -64,6 +67,14 @@ addButtons.forEach( (button) => {
         inputElement.value = '';
         saveAndRender();
       }
+    });
+
+    const addTaskButton = document.querySelector(`.js-add-task-button-${day}`);
+    addTaskButton.addEventListener('click', () => {
+      const taskId = Math.random();
+      taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
+      inputElement.value = '';
+      saveAndRender();
     });
   });
 });
