@@ -96,7 +96,7 @@ function renderTasks() {
     <div class="js-task-box-${task.taskId}">
       ${task.taskName} 
       ${checkBtnHTML}
-      <button class="js-edit-button">Edit</button>
+      <button class="js-edit-button" data-task-id=${task.taskId}>Edit</button>
       <button class="js-delete-button" data-task-id="${task.taskId}">Delete</button>
     </div>
     `;
@@ -108,6 +108,44 @@ function renderTasks() {
       const {taskId} = button.dataset;
       completeTask(taskId);
     });
+  });
+
+  //EDIT FEATURE
+  const editButtons = document.querySelectorAll('.js-edit-button');
+  editButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const {taskId} = button.dataset;
+      let selector = `${taskId}`;
+      modifiedSelector = selector.replace('.', '\\.');
+      const taskBox = document.querySelector(`.js-task-box-${modifiedSelector}`);
+
+      let foundTaskIndex = -1;
+      taskList.forEach((task, index) => {
+        if(task.taskId === Number(taskId)) foundTaskIndex = index;
+      });
+      taskBox.innerHTML = `
+      <input class="js-edit-input" value="${taskList[foundTaskIndex].taskName}" data-index="${foundTaskIndex}">
+      <button class="js-save-edit-button" data>Save Edit</button>
+      <button class="js-cancel-edit-button">Cancel Edit</button>
+      `;
+
+      //editor input field: can only save one open edit
+      document.querySelectorAll('.js-edit-input').forEach((input)=>{
+        input.addEventListener('keydown', () => {
+          if(event.key === 'Enter') {
+            taskList[input.dataset.index].taskName = input.value;
+            saveAndRender();
+          }
+        });
+
+        //save edit button: can save multiple open edits
+        document.querySelectorAll('.js-save-edit-button').forEach((button)=> {button.addEventListener('click', ()=> {
+          taskList[input.dataset.index].taskName = input.value;
+          saveAndRender();
+        });});
+      });
+      document.querySelectorAll('.js-cancel-edit-button').forEach((button) => {button.addEventListener('click', () => {renderTasks();})}); //cancel edit button reloads page
+    })
   });
 
   const deleteButtons = document.querySelectorAll('.js-delete-button');
