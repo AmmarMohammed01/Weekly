@@ -48,18 +48,27 @@ addButtons.forEach( (button) => {
     const inputElement = document.querySelector(`.js-input-${day}`);
     inputElement.addEventListener('keydown', () => {
       if(event.key === 'Enter') {
+        const taskId = Math.random();
         document.querySelector(`.js-output-${day}`).innerHTML += `
-        <div>
+        <div class="js-task-box-${taskId}">
           ${inputElement.value} 
           <button>Check</button>
           <button>Edit</button>
-          <button>Delete</button>
+          <button class="js-delete-button" data-task-id="${taskId}">Delete</button>
         </div>`;
 
-        taskList.push({taskName: inputElement.value, isComplete: false, day: day});
-        //saveData();
+        taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
+        saveData();
         inputElement.value = '';
         console.log(JSON.stringify(taskList));
+        deleteButtons = document.querySelectorAll('.js-delete-button');
+        deleteButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const {taskId} = button.dataset;
+            deleteTask(taskId);
+          });
+        });
+
       }
     });
   });
@@ -73,14 +82,40 @@ function saveData() {
 function renderTasks() {
   taskList.forEach((task) => {
     document.querySelector(`.js-output-${task.day}`).innerHTML += `
-    <div>
+    <div class="js-task-box-${task.taskId}">
       ${task.taskName} 
       <button>Check</button>
       <button>Edit</button>
-      <button>Delete</button>
+      <button class="js-delete-button" data-task-id="${task.taskId}">Delete</button>
     </div>
     `;
   });
 }
 
 renderTasks();
+
+let deleteButtons = document.querySelectorAll('.js-delete-button');
+deleteButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const {taskId} = button.dataset;
+    deleteTask(taskId);
+  });
+});
+
+function deleteTask(deleteId) {
+  taskList.forEach((task, index) => {
+    console.log(`hi${index}`);
+    console.log(`task.taskId: ${task.taskId} and deleteId: ${deleteId}`);
+    console.log(task.taskId === Number(deleteId));
+    if(task.taskId === Number(deleteId)) {
+      taskList.splice(index, 1);
+      console.log(JSON.stringify(taskList));
+      saveData();
+    }
+  });
+
+  let selector = `${deleteId}`;
+  modifiedSelector = selector.replace('.', '\\.');
+
+  document.querySelector(`.js-task-box-${modifiedSelector}`).remove();
+}
