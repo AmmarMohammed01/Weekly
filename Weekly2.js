@@ -21,8 +21,8 @@ days.forEach((day, index) => {
   
     <div class="js-output-${index}"></div>
   
-    <div class="js-add-box-${index}">
-      <button class="js-add-button" data-day=${index}>Add</button>
+    <div class="js-add-box-${index} css2-add-box-original">
+      <button class="js-add-button css2-add-button" data-day=${index}>Add</button>
     </div>
     
   </div>`;
@@ -46,38 +46,52 @@ document.querySelectorAll('.js-clear-day-button').forEach((button) => {
 document.querySelector('.js-clear-all-button').addEventListener('click', () => { taskList = []; saveAndRender();});
 
 //2START: Add buttons change to input box
-const addButtons = document.querySelectorAll('.js-add-button');
+let addButtons = document.querySelectorAll('.js-add-button');
+addTask(addButtons);
+// addButtons.forEach( (button) => {
+//   button.addEventListener('click', () => {
+//     const {day} = button.dataset;
+//     const addBox = document.querySelector(`.js-add-box-${day}`);
+//     addBox.classList.add('css2-add-box');
+//     addBox.classList.remove('css2-add-box-original');
 
-addButtons.forEach( (button) => {
-  button.addEventListener('click', () => {
-    const {day} = button.dataset;
-    const addBox = document.querySelector(`.js-add-box-${day}`);
-    addBox.classList.add('css2-add-box');
+//     addBox.innerHTML = `
+//     <input class="css2-input js-input-${day}" placeholder="Type task to add">
+//     <button class="css2-back-task-button js-back-task-button">Back</button>
+//     <button class="css2-add-task-button js-add-task-button-${day}">+</button>
+//     `;
 
-    addBox.innerHTML = `
-    <input class="css2-input js-input-${day}" placeholder="Type task to add">
-    <button class="js-add-task-button-${day}">+</button>
-    `;
+//     const inputElement = document.querySelector(`.js-input-${day}`);
+//     inputElement.addEventListener('keydown', () => {
+//       if(event.key === 'Enter') {
+//         const taskId = Math.random();
+//         taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
+//         inputElement.value = '';
+//         saveAndRender();
+//       }
+//     });
 
-    const inputElement = document.querySelector(`.js-input-${day}`);
-    inputElement.addEventListener('keydown', () => {
-      if(event.key === 'Enter') {
-        const taskId = Math.random();
-        taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
-        inputElement.value = '';
-        saveAndRender();
-      }
-    });
+//     const addTaskButton = document.querySelector(`.js-add-task-button-${day}`);
+//     addTaskButton.addEventListener('click', () => {
+//       const taskId = Math.random();
+//       taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
+//       inputElement.value = '';
+//       saveAndRender();
+//     });
 
-    const addTaskButton = document.querySelector(`.js-add-task-button-${day}`);
-    addTaskButton.addEventListener('click', () => {
-      const taskId = Math.random();
-      taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
-      inputElement.value = '';
-      saveAndRender();
-    });
-  });
-});
+//     const backTaskButton = document.querySelectorAll(`.js-back-task-button`);
+//     backTaskButton.forEach((button) => {
+//       button.addEventListener('click', () => {
+//         addBox.innerHTML = `
+//         <button class="js-add-button css2-add-button" data-day=${day}>Add</button>`;
+//         addBox.classList.remove('css2-add-box');
+//         addBox.classList.add('css2-add-box-original');
+//         addButtons = document.querySelectorAll('.js-add-button');
+//       });
+//     });
+
+//   });
+// });
 //2FINISH: Add tasks
 
 function saveData() {
@@ -93,11 +107,13 @@ function renderTasks() {
     checkBtnHTML = task.isComplete ? `<button class="js-check-button css2-checkbtn-complete" data-task-id=${task.taskId}>Check</button>` : `<button class="js-check-button" data-task-id=${task.taskId}>Check</button>`
 
     document.querySelector(`.js-output-${task.day}`).innerHTML += `
-    <div class="js-task-box-${task.taskId}">
-      ${task.taskName} 
-      ${checkBtnHTML}
-      <button class="js-edit-button" data-task-id=${task.taskId}>Edit</button>
-      <button class="js-delete-button" data-task-id="${task.taskId}">Delete</button>
+    <div class="js-task-box-${task.taskId} css2-task-box">
+      <div>${task.taskName}</div>
+      <div>
+        ${checkBtnHTML}
+        <button class="js-edit-button" data-task-id=${task.taskId}>Edit</button>
+        <button class="js-delete-button" data-task-id="${task.taskId}">Delete</button>
+      </div>
     </div>
     `;
   });
@@ -124,7 +140,7 @@ function renderTasks() {
         if(task.taskId === Number(taskId)) foundTaskIndex = index;
       });
       taskBox.innerHTML = `
-      <input class="js-edit-input" value="${taskList[foundTaskIndex].taskName}" data-index="${foundTaskIndex}">
+      <input class="js-edit-input css2-edit-input" value="${taskList[foundTaskIndex].taskName}" data-index="${foundTaskIndex}">
       <button class="js-save-edit-button" data>Save Edit</button>
       <button class="js-cancel-edit-button">Cancel Edit</button>
       `;
@@ -158,6 +174,54 @@ function renderTasks() {
 }
 
 renderTasks();
+
+function addTask(buttons) {
+  buttons.forEach( (button) => {
+    button.addEventListener('click', () => {
+      const {day} = button.dataset;
+      const addBox = document.querySelector(`.js-add-box-${day}`);
+      addBox.classList.add('css2-add-box');
+      addBox.classList.remove('css2-add-box-original');
+  
+      addBox.innerHTML = `
+      <input class="css2-input js-input-${day}" placeholder="Type task to add">
+      <button class="css2-back-task-button js-back-task-button">Back</button>
+      <button class="css2-add-task-button js-add-task-button-${day}">+</button>
+      `;
+  
+      const inputElement = document.querySelector(`.js-input-${day}`);
+      inputElement.addEventListener('keydown', () => {
+        if(event.key === 'Enter') {
+          const taskId = Math.random();
+          taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
+          inputElement.value = '';
+          saveAndRender();
+        }
+      });
+  
+      const addTaskButton = document.querySelector(`.js-add-task-button-${day}`);
+      addTaskButton.addEventListener('click', () => {
+        const taskId = Math.random();
+        taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
+        inputElement.value = '';
+        saveAndRender();
+      });
+  
+      const backTaskButton = document.querySelectorAll(`.js-back-task-button`);
+      backTaskButton.forEach((button) => {
+        button.addEventListener('click', () => {
+          addBox.innerHTML = `
+          <button class="js-add-button css2-add-button" data-day=${day}>Add</button>`;
+          addBox.classList.remove('css2-add-box');
+          addBox.classList.add('css2-add-box-original');
+          buttons1 = document.querySelectorAll('.js-add-button');
+          addTask(buttons1);
+        });
+      });
+  
+    });
+  });
+}
 
 function deleteTask(deleteId) {
   taskList.forEach((task, index) => {

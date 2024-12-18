@@ -53,7 +53,7 @@ html, body {
   transition: box-shadow 0.25s;
 
   display: grid;
-  grid-template-rows: 36px 1fr 36px;
+  grid-template-rows: 36px 1fr 55px;
 }
 
 .day-container:hover {
@@ -130,7 +130,7 @@ html, body {
   padding: 5px 10px;
 }
 
-input {
+.css1-input {
   font-size: 20px;
   text-align: center;
   padding: 5px 10px;
@@ -172,14 +172,65 @@ input {
 
 /*WEEKLY2*/
 .css2-input {
-  width: 165px;
+  width: 130px;
+  border: none;
+  border-radius: 20px 0px 0px 20px; /*topL, topR, botR, botL*/
+  height: 30px;
+  padding: 0px 0px 0px 20px; /*top, right, bottom, left*/
+  margin-left: 15px;
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.css2-add-task-button {
+  border: none;
+  border-radius: 0px 20px 20px 0px;
+  height: 30px;
+  margin-right: 15px;
+  background-color: rgba(102,0,255,0.4);
+  color: white;
+}
+
+.css2-back-task-button {
+  border: none;
+  border-radius: 0px;
+  height: 30px;
 }
 
 .css2-add-box {
   display: grid;
-  grid-template-columns: 1fr 40px;
+  grid-template-columns: 1fr 40px 50px;
+  padding: 10px;
+}
+
+.css2-add-box-original {
+  padding:10px;
 }
 
 .css2-checkbtn-complete {
   background-color: #0CF574;
+}
+
+.css2-task-box {
+  background-color:rgba(0, 0, 0, 0.3);
+  margin: 5px 5px;
+  border-radius: 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: 1fr 25px;
+  color: white;
+}
+
+.css2-edit-input {
+  border: solid;
+  border-color: purple;
+}
+
+.css2-add-button {
+  background-color: rgba(102,0,255,0.4);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  width: 100%;
 }
