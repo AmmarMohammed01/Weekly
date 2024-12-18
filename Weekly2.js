@@ -49,26 +49,12 @@ addButtons.forEach( (button) => {
     inputElement.addEventListener('keydown', () => {
       if(event.key === 'Enter') {
         const taskId = Math.random();
-        document.querySelector(`.js-output-${day}`).innerHTML += `
-        <div class="js-task-box-${taskId}">
-          ${inputElement.value} 
-          <button>Check</button>
-          <button>Edit</button>
-          <button class="js-delete-button" data-task-id="${taskId}">Delete</button>
-        </div>`;
-
         taskList.push({taskName: inputElement.value, isComplete: false, day: day, taskId: taskId});
         saveData();
         inputElement.value = '';
-        console.log(JSON.stringify(taskList));
-        deleteButtons = document.querySelectorAll('.js-delete-button');
-        deleteButtons.forEach((button) => {
-          button.addEventListener('click', () => {
-            const {taskId} = button.dataset;
-            deleteTask(taskId);
-          });
-        });
 
+        console.log(JSON.stringify(taskList));
+        renderTasks();
       }
     });
   });
@@ -80,6 +66,10 @@ function saveData() {
 }
 
 function renderTasks() {
+  for(let i = 0; i < 7; i++) {
+    document.querySelector(`.js-output-${i}`).innerHTML = '';
+  }
+
   taskList.forEach((task) => {
     document.querySelector(`.js-output-${task.day}`).innerHTML += `
     <div class="js-task-box-${task.taskId}">
@@ -90,17 +80,17 @@ function renderTasks() {
     </div>
     `;
   });
+
+  const deleteButtons = document.querySelectorAll('.js-delete-button');
+  deleteButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const {taskId} = button.dataset;
+      deleteTask(taskId);
+    });
+  });
 }
 
 renderTasks();
-
-let deleteButtons = document.querySelectorAll('.js-delete-button');
-deleteButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const {taskId} = button.dataset;
-    deleteTask(taskId);
-  });
-});
 
 function deleteTask(deleteId) {
   taskList.forEach((task, index) => {
