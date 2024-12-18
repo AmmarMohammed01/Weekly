@@ -16,7 +16,7 @@ days.forEach((day, index) => {
   
     <div class="day-menu-bar">
       <div style="flex: 1; text-align: left; margin: 2px 10px;">${day}</div>
-      <button class="button-day js-clear-day-button" data-day=${index}>-</button>
+      <button title="Clear all tasks from ${days[index]}" class="button-day js-clear-day-button" data-day=${index}>&#128465;</button>
     </div>
   
     <div class="js-output-${index}"></div>
@@ -59,7 +59,7 @@ function renderTasks() {
   }
 
   taskList.forEach((task) => {
-    checkBtnHTML = task.isComplete ? `<button class="js-check-button css2-checkbtn-complete css2-checkbtn" data-task-id=${task.taskId}>Check</button>` : `<button class="js-check-button css2-checkbtn" data-task-id=${task.taskId}>Check</button>`
+    checkBtnHTML = task.isComplete ? `<button class="js-check-button css2-checkbtn-complete css2-checkbtn" data-task-id=${task.taskId}>Done &#10003;</button>` : `<button class="js-check-button css2-checkbtn" data-task-id=${task.taskId}>Not Done</button>`
 
     document.querySelector(`.js-output-${task.day}`).innerHTML += `
     <div class="js-task-box-${task.taskId} css2-task-box">
@@ -143,7 +143,7 @@ function addTask(buttons) {
       addBox.innerHTML = `
       <input class="css2-input js-input-${day}" placeholder="Type task to add">
       <button class="css2-back-task-button js-back-task-button">Back</button>
-      <button class="css2-add-task-button js-add-task-button-${day}">+</button>
+      <button title="Click to add task to ${days[day]}" class="css2-add-task-button js-add-task-button-${day}">&plus;</button>
       `;
   
       const inputElement = document.querySelector(`.js-input-${day}`);

@@ -110,7 +110,7 @@ html, body {
 }
 
 .button-day:hover {
-  background-color: rgb(0,100,255);
+  background-color: rgb(255, 100, 100);
 }
 
 .button-clear-tasks {
@@ -193,6 +193,11 @@ html, body {
   /* background-color: rgba(102,0,255,0.4); */
   background-color: rgba(102,0,255);
   color: white;
+  transition: background-color 0.5s;
+}
+
+.css2-add-task-button:hover {
+  background-color: rgb(180, 130, 255);
 }
 
 .css2-back-task-button {
@@ -200,6 +205,12 @@ html, body {
   border: none;
   border-radius: 0px;
   height: 30px;
+  background-color: rgb(255, 255,255);
+  transition: background-color 0.5s;
+}
+
+.css2-back-task-button:hover {
+  background-color: rgb(200, 200, 200);
 }
 
 .css2-add-box {
@@ -219,6 +230,7 @@ html, body {
   border-radius: 0px 0px 0px 10px;
   background-color: rgb(200, 200, 200);
   transition: opacity 0.5s;
+  font-size: 12px;
 }
 
 .css2-checkbtn:hover {
@@ -340,4 +352,10 @@ html, body {
   border-color: white;
   border-width: 1px;
   /* width: 100%; */
+
+  transition: background-color 0.5s;
+}
+
+.css2-add-button:hover {
+  background-color: rgb(180, 130, 255);
 }
