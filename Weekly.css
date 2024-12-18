@@ -34,8 +34,10 @@ html, body {
 }
 
 .week-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
+  display: flex;
+  flex-wrap: wrap;
   column-gap: 5px;
   text-align: center;
   margin-bottom:50px;
@@ -44,6 +46,8 @@ html, body {
 .day-container {
   /*border-color: rgb(0,180,255);*/
   /*border-style: solid; /*this makes the border appear around div*/
+  flex:1;
+  min-width: 225px;
   min-height: 175px;
   border-width: 3px;
   border-radius: 20px 20px 10px 10px;
@@ -172,34 +176,38 @@ html, body {
 
 /*WEEKLY2*/
 .css2-input {
-  width: 130px;
+  flex:1;
+  width: auto;
   border: none;
   border-radius: 20px 0px 0px 20px; /*topL, topR, botR, botL*/
   height: 30px;
   padding: 0px 0px 0px 20px; /*top, right, bottom, left*/
-  margin-left: 15px;
   background-color: rgba(255, 255, 255, 0.35);
 }
 
 .css2-add-task-button {
+  flex: 1;
   border: none;
   border-radius: 0px 20px 20px 0px;
   height: 30px;
-  margin-right: 15px;
-  background-color: rgba(102,0,255,0.4);
+  /* background-color: rgba(102,0,255,0.4); */
+  background-color: rgba(102,0,255);
   color: white;
 }
 
 .css2-back-task-button {
+  flex:1;
   border: none;
   border-radius: 0px;
   height: 30px;
 }
 
 .css2-add-box {
-  display: grid;
-  grid-template-columns: 1fr 40px 50px;
-  padding: 10px;
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  display:flex;
+  place-items: center;
+  /* padding: 10px; */
 }
 
 .css2-add-box-original {
@@ -261,7 +269,7 @@ html, body {
 }
 
 .css2-task-box {
-  background-color:rgba(255, 255, 255, 0.35);
+  background-color:rgba(255, 255, 255, 0.75);
   color: black;
 
   border-radius: 10px;
@@ -285,7 +293,7 @@ html, body {
   height: 30px;
   padding: 0px 0px 0px 20px; /*top, right, bottom, left*/
   background-color: rgba(0, 0, 0, 0.1);
-  color: white;
+  color: black;
 }
 
 .css2-save-edit-button {
