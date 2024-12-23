@@ -51,34 +51,39 @@ html, body {
 @media (min-width: 500px) {
   .week-container {
     grid-template-columns: 1fr 1fr;
+    row-gap: 10px;
   }
 }
 
 @media (min-width: 700px) {
   .week-container {
     grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 10px;
   }
 }
 
-@media (min-width: 720px) {
+@media (min-width: 900px) {
   .week-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 10px;
   }
 }
 
-@media (min-width: 940px) {
+@media (min-width: 1150px) {
   .week-container {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 10px;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1388px) {
   .week-container {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 10px;
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1619px) {
   .week-container {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
