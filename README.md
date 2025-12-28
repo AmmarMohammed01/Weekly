@@ -20,3 +20,20 @@ Goals works like a traditional to-do list. <br>
 Just type the name of the task, then add it to the list. <br>
 Once you're finished, you can remove it. <br>
 Made a typo in your task entry? No worries, you can edit it.
+
+<!--
+In GitHub Repo About Section:
+- Describe the project
+- Link to project website
+- Tags for technologies used
+
+In Repo README:
+- Short Intro
+- Technologies Used
+- Features (what users can do, keyboard shortcuts)
+- The Process (of how it was built)
+- What I learned
+- How it could be improved
+- How to run the project
+- Video Demo
+-->
