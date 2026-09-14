@@ -136,7 +136,8 @@ html, body {
 
 .button-day,
 .button-clear-tasks,
-.button-change-info {
+.button-change-info,
+.button-export-md {
   /*background-color: rgb(0, 60, 151);*/
   background-color: rgb(255, 255, 255);
   border: none;

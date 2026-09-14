@@ -259,3 +259,97 @@ function editTitle(button1) {
   
   });
 }
+
+document.querySelector('.js-export-to-md-button').addEventListener('click', () => 
+{
+  // EXPORT TO MD
+  // GET TITLE
+  let title = JSON.parse(localStorage.getItem('weekly2-title'));
+  console.log(`Week Title: ${title}`);
+
+  // PRINT EACH DAY OF THE WEEK
+  // PRINT EACH TASK IN WEEKDAY/END
+  // PRINT COMPLETION STATUS
+  console.log(taskList);
+
+  /*
+  taskList.forEach( (task, taskListIndex) => 
+    {
+        if(task.day)
+    }
+  );
+  */
+
+  // Y BEGIN
+  const taskGroupsArray = [];
+
+  taskList.forEach(task => {
+    const day = Number(task.day);
+
+    if (!taskGroupsArray[day]) {
+      taskGroupsArray[day] = [];
+    }
+
+    taskGroupsArray[day].push(task);
+  });
+  // Y END
+
+  /*
+  days.forEach( (day, index) => 
+    {
+        if (taskGroupsArray[index]) {
+          console.log(day);
+          taskGroupsArray[index].forEach( (task) => {
+            console.log(`\t${task.taskName ? "[✅]" : "[❌]"}, ${task.isComplete}`)
+          } );
+        }
+    }
+  );
+  */
+
+  // Y BEGIN
+  let markdown = "";
+
+  // S BEGIN
+  markdown += `# ${title}\n\n`;
+  // S END
+
+  days.forEach((day, index) => {
+    if (taskGroupsArray[index]) {
+      markdown += `## ${day}\n\n`;
+
+      taskGroupsArray[index].forEach(task => {
+        const checkbox = task.isComplete ? "[x]" : "[ ]";
+        markdown += `- ${checkbox} ${task.taskName}\n`;
+      });
+
+      markdown += "\n";
+    }
+  });
+
+  const file = new Blob([markdown], {
+    type: "text/markdown;charset=utf-8"
+  });
+
+  const downloadLink = document.createElement("a");
+  downloadLink.href = URL.createObjectURL(file);
+  downloadLink.download = "weekly.md";
+  downloadLink.click();
+
+  URL.revokeObjectURL(downloadLink.href);
+  // Y END
+
+  /*
+
+  taskList contains objects
+  0
+  {taskName: "Add something sun", isComplete: false, day: "0", taskId: 0.556095835213526}
+  1
+  {taskName: "add to wed.", isComplete: false, day: "3", taskId: 0.5783318463303455}
+  2
+  {taskName: "sun 2", isComplete: true, day: "0", taskId: 0.8736789499968589}
+  3
+  {taskName: "sun 3", isComplete: true, day: "0", taskId: 0.8906107257919115}
+  */
+}
+);
